@@ -26,12 +26,6 @@ class App extends Component {
     }
   }
 
-  renderThing = () => {
-    return this.state.wordList.map((word) => {
-      console.log(word);
-    })
-  }
-
   passChildState = (key, val) => {
     // console.log(key, val)
     this.setState({
@@ -40,43 +34,57 @@ class App extends Component {
       // console.log(this.state.wordList);
     })
   }
-  printWords = () => {
-    this.state.wordlist ?
-      this.state.wordList.map((word) => {
-        console.log(word)
-        // return word
-      }) : null
+  
+  addToFridge = (e) =>{
+    // const wordList = e.target.parentElement.id
+    console.log('i am adding to the fridge!')
+    console.log(e.target.innerHTML);
+    // e.target.classList = "hide"
+    // console.log(e.target);
+    // const selectedWords = Array.from(this.state.selectedWords);
+    // selectedWords.push(e.target.innerHTML)
+
+    const tempSelected = this.state.wordList.slice(0);
+    const index = this.getIndexOfClicked(e.target, this.state.wordList)
+    const removedWord = tempSelected.splice(index, 1);
+    console.log(removedWord);
+
+    this.setState({
+      selectedWords: [...this.state.selectedWords, removedWord[0]],
+      wordList: tempSelected
+    })
+
+    
   }
 
-  addToFridge = (e) =>{
-    const wordList = e.target.parentElement.id
-    e.target.classList = "hide"
-    console.log(e.target);
-    const selectedWords = Array.from(this.state.selectedWords)
-    selectedWords.push(e.target.innerHTML)
-    this.setState({selectedWords},()=>{
-      // console.log(this.state.selectedWords);
-    })
-    this.arrayComp(this.state.selectedWords, this.state.wordList)
-    this.arrayThing(e.target)
+  removeFromFridge = (e) => {
+    //on click on li, remove item from selectedWords array and put in wordList array
+    console.log('i am removing from the fridge!')
+    console.log(e.target.innerHTML);
+    // copy selectedWords
+    const tempSelected = this.state.selectedWords.slice(0);
+    //get index of clicked word in the array
+    const index = this.getIndexOfClicked(e.target, this.state.selectedWords)
+    //remove that word from the array
+    const removedWord = tempSelected.splice(index, 1);
+    //update the state by adding new spliced array and pushing removed word to other array
+    this.setState(prevState => ({
+      wordList: [...prevState.wordList, removedWord[0]],
+      selectedWords: tempSelected
+    }));
   }
-  arrayComp = (arr1, arr2) => {
-    arr1.forEach((word) => {
-      console.log(word)
-      arr2.forEach((item) => {
-        if(word === item){
-          const index = arr2.indexOf(item)
-          const arr = arr2.splice(index, 1)
-          console.log(arr)
-        }
-      })
-    })
+ 
+  getIndexOfClicked = (clickedItem, array) => {
+    const clickedWord = clickedItem.innerHTML
+    
+    // console.log(selectedWord);
+    // const indexOfWord = array.indexOf(clickedWord);
+    return array.indexOf(clickedWord);
+    // console.log(indexOfWord);
   }
-  arrayThing = (clickedItem) => {
-    const selectedWord = clickedItem.innerHTML
-    console.log(selectedWord);
-    const indexOfWord = this.state.wordList.indexOf(selectedWord);
-    console.log(indexOfWord);
+
+  sharePoem = (e) => {
+    console.log(this.state.selectedWords);
   }
 
   resetPage = () =>{
@@ -97,7 +105,7 @@ class App extends Component {
                   ?
                   this.state.selectedWords.map((word)=>{
                     return(
-                      <li>{word}</li>
+                      <li onClick={this.removeFromFridge}>{word}</li>
                     )
                   }):
                   null
