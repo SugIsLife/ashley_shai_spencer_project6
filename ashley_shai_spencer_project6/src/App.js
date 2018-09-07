@@ -79,6 +79,10 @@ class App extends Component {
     console.log(indexOfWord);
   }
 
+  resetPage = () =>{
+    window.location.reload();
+  }
+
   render() {
     return (
       <div className="App">
@@ -101,7 +105,7 @@ class App extends Component {
               </ul>
             </section>
             <aside className="poem-dashboard">
-              <button className="reset">Reset</button>
+              <button className="reset" onClick={this.resetPage}>Reset</button>
               <button className="share-poem">Share Poem</button>
               <section className="word-container">
                 <ul className="word-list" id="word-list">
