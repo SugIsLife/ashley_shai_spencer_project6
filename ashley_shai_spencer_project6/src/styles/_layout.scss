@@ -1,3 +1,4 @@
+@import './vars';
 // // .wrapper{
 // //     max-width: 1080px;
 // //     margin: 0 auto;
@@ -5,7 +6,7 @@
 
 .App{
     height: 100vh;
-    background: red;
+    background: $green;
 }
 
 .hide{

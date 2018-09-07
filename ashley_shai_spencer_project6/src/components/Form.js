@@ -39,39 +39,32 @@ class Form extends Component {
         })
     }
 
-    if (e.target.type === "radio") {
-      // console.log(e.target.checked)
+  }
+
+  toggleRadio = (e) => {
+    // If a topic has been selected already and if e.target is a radio button...
+    if (this.state.topicSelected && e.target.type === "radio" ){
+      // uncheck the input
+      e.target.checked = false
+
+      // change state to reflect a topic being unselected
       this.setState({
-        queryInput: e.target.value,
+        topicSelected: false,
+        queryInput: '',
+      })
+    //  if a topic has not been selected...
+    } else if (e.target.type === "radio" ){
+
+      // set the input that was clicked to checked
+      e.target.checked = true;
+
+      // change state to reflect that a topic has been selected
+      this.setState({
         topicSelected: true,
+        queryInput: e.target.value,
       })
     }
   }
-
-  // toggleRadio = (e) => {
-  //   Object.entries(document.getElementsByTagName('input')).map(input => {
-  //     if (input[1].type === "radio") {
-  //       console.log(input[1].value, input[1].checked)
-  //     }
-  //     if (input[1].checked && input[1].value !== e.target.value) {
-  //     }
-  //   })
-
-  //   if (this.state.topicSelected){
-  //     e.target.checked = false;
-  //     // e.target.setAttribute('checked', false)
-  //     this.setState({
-  //       topicSelected: false,
-  //     })
-  //   } else{
-  //     e.target.checked = true;
-  //     this.setState({
-  //       topicSelected: true,
-  //     }, () => {
-  //       this.props.passChildState('wordList', this.state.wordList)
-  //     })
-  //   }
-  // }
 
   getElementOnClick = (e) => {
     this.setState({
@@ -109,13 +102,14 @@ class Form extends Component {
         this.props.passChildState('wordList', this.state.wordList)
       })
     })
-
-
   }
 
   handleSubmit = (e) => {
     e.preventDefault();
     this.setWordList()
+    this.setState({
+      autoSuggest: [],
+    })
   }
 
   render() {
@@ -133,19 +127,19 @@ class Form extends Component {
             }
           </ul> : null}
         <fieldset className="category-options">
-          <input onChange={this.handleChange} onClick={this.toggleRadio} type="radio" name="category" value="Love" id="love" />
+          <input onBlur={this.handleChange} onClick={this.toggleRadio} type="radio" name="category" value="Love" id="love" />
           <label htmlFor="love"> Love </label>
 
-          <input onChange={this.handleChange} onClick={this.toggleRadio} type="radio" name="category" value="Yoga" id="yoga" />
+          <input onBlur={this.handleChange} onClick={this.toggleRadio} type="radio" name="category" value="Yoga" id="yoga" />
           <label htmlFor="yoga"> Yoga </label>
 
-          <input onChange={this.handleChange} onClick={this.toggleRadio} type="radio" name="category" value="Astrology" id="astrology" />
+          <input onBlur={this.handleChange} onClick={this.toggleRadio} type="radio" name="category" value="Astrology" id="astrology" />
           <label htmlFor="astrology"> Astrology </label>
 
-          <input onChange={this.handleChange} onClick={this.toggleRadio} type="radio" name="category" value="Apocalypse" id="apocalypse" />
+          <input onBlur={this.handleChange} onClick={this.toggleRadio} type="radio" name="category" value="Apocalypse" id="apocalypse" />
           <label htmlFor="apocalypse"> Apocalypse </label>
 
-          <input onChange={this.handleChange} onClick={this.toggleRadio} type="radio" name="category" value="Shakespeare" id="shakespeare" />
+          <input onBlur={this.handleChange} onClick={this.toggleRadio} type="radio" name="category" value="Shakespeare" id="shakespeare" />
           <label htmlFor="shakespeare"> Shakespeare </label>
 
         </fieldset>

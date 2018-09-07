@@ -133,7 +133,7 @@ legend, button::-moz-focus-inner, input::-moz-focus-inner {
 
 .App {
   height: 100vh;
-  background: red; }
+  background: #006750; }
 
 .hide {
   background: green; }
