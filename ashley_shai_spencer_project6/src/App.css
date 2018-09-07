@@ -131,9 +131,15 @@ legend, button::-moz-focus-inner, input::-moz-focus-inner {
   -webkit-box-sizing: border-box;
   box-sizing: border-box; }
 
+.wrapper {
+  max-width: 1080px;
+  width: 80%;
+  margin: 0 auto; }
+
 .App {
   height: 100vh;
-  background: #006750; }
+  background: #006750;
+  padding: 2rem; }
 
 .hide {
   background: green; }
@@ -142,14 +148,26 @@ legend, button::-moz-focus-inner, input::-moz-focus-inner {
   float: left;
   width: 70%; }
 
+.category-options {
+  display: block;
+  width: 100%; }
+
 .poem-dashboard {
   float: left;
+<<<<<<< HEAD
   margin-top: 20px;
   margin-bottom: 0;
   width: 30%;
   border-radius: 10%;
   height: 97vh;
   text-align: center; }
+=======
+  width: 30%; }
+  .poem-dashboard ul {
+    max-height: 50vh;
+    width: 100%;
+    overflow-y: scroll; }
+>>>>>>> b683944a02ab1c166fc9ecaf25125877df87fe9e
 
 .fridge-container {
   background: url(./assets/fridge.svg);
@@ -167,6 +185,7 @@ button {
   background: white;
   width: auto;
   float: left;
+<<<<<<< HEAD
   margin: 10px;
   padding: 5px;
   list-style: none;
@@ -186,3 +205,13 @@ Input[type=radio] {
 
 label {
   margin: 10px; }
+=======
+  margin: 5px;
+  padding: 10px;
+  list-style: none;
+  box-shadow: 2px 5px; }
+
+ul {
+  list-style: none;
+  padding: 0; }
+>>>>>>> b683944a02ab1c166fc9ecaf25125877df87fe9e
