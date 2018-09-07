@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import '../App.css';
 import { Link } from 'react-router-dom';
+import firebase from './firebase';
 
 class Fridge extends Component{
   constructor(props){
@@ -9,7 +10,6 @@ class Fridge extends Component{
       wordList: this.props.wordList,
       selectedWords: [],
     }
-    // console.log(this.state)
   }
 
   addToFridge = (e) => {
@@ -47,9 +47,15 @@ class Fridge extends Component{
   sharePoem = (e) => {
     this.props.passChildState("selectedWords", this.state.selectedWords)
     // pass selected words to firebase
-    // return key
-    // pass key to app
-    // set poem url to include key
+    const dbRef = firebase.database().ref();
+    const poemKey = dbRef.push(this.state.selectedWords).key;
+    // this.setState({
+    //   poemKey,
+    // }, () => {
+    //   this.props.passChildState("poemKey", this.state.poemKey)
+    // })
+    this.props.history.push(`/poem/${poemKey}`)
+
   }
 
   resetPage = () => {
@@ -75,7 +81,7 @@ class Fridge extends Component{
         </section>
         <aside className="poem-dashboard">
           <button className="reset" onClick={this.resetPage}>Reset</button>
-          <Link to="/poem" className="share-poem show" onClick={this.sharePoem}>Share Poem</Link>
+          <button className="share-poem show" onClick={this.sharePoem}>Share Poem</button>
           <Link to="/" >Back</Link>
           <section className="word-container">
             <ul className="word-list" id="word-list">
