@@ -87,6 +87,10 @@ class App extends Component {
     console.log(this.state.selectedWords);
   }
 
+  resetPage = () =>{
+    window.location.reload();
+  }
+
   render() {
     return (
       <div className="App">
@@ -109,8 +113,8 @@ class App extends Component {
               </ul>
             </section>
             <aside className="poem-dashboard">
-              <button className="reset">Reset</button>
-              <button className="share-poem"onClick={this.sharePoem}>Share Poem</button>
+              <button className="reset" onClick={this.resetPage}>Reset</button>
+              <button className="share-poem">Share Poem</button>
               <section className="word-container">
                 <ul className="word-list" id="word-list">
                   {/* map through the word choices array and create an li for each word  */}

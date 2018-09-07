@@ -145,3 +145,12 @@ legend, button::-moz-focus-inner, input::-moz-focus-inner {
 .poem-dashboard {
   float: left;
   width: 30%; }
+
+.show {
+  background: white;
+  width: auto;
+  float: left;
+  margin: 10px;
+  padding: 10px;
+  list-style: none;
+  box-shadow: 2px 5px; }
