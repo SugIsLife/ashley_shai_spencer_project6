@@ -1,12 +1,14 @@
 @import './vars';
-// // .wrapper{
-// //     max-width: 1080px;
-// //     margin: 0 auto;
-// }
+.wrapper{
+    max-width: 1080px;
+    width: 80%;
+    margin: 0 auto;
+}
 
 .App{
     height: 100vh;
     background: $green;
+    padding: 2rem;
 }
 
 .hide{
@@ -18,7 +20,17 @@
     width: 70%;
 }
 
+.category-options{
+    display: block;
+    width: 100%;
+}
+
 .poem-dashboard{
     float: left;
     width:30%;
+    ul{
+        max-height: 50vh;
+        width: 100%;
+        overflow-y: scroll;
+    }
 }

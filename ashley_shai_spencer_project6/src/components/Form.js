@@ -1,5 +1,10 @@
 import React, { Component } from 'react';
+import '../App.css';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
+import _ from 'underscore'
+
+const wordList = ['or', 'if', 'the', 'a', 'it', 'does', 'they', 'their', 'his', 'her', 'and', 'our', 'out', 'we', 'in', 'to', 'too', 'me', 'ly', 'ing', 'd', 'ed', 'ful', 'y', 'anti', 'un', 're']
 
 class Form extends Component {
   constructor(props) {
@@ -82,25 +87,47 @@ class Form extends Component {
     return this.getWordsQuery(queryType, this.state.queryInput, num)
   }
 
+  getVerbs = (queryType, input, num) => {
+    return axios.get(`https://api.datamuse.com/words?${queryType}=${input}&max=${num}&md=p`).then(({ data }) => {
+
+      // filter for verbs
+      const verbs = data.filter((word) => {
+        return word.tags && word.tags.includes('v')
+
+      })
+      //get array of just the words
+      verbs.slice(0, 10).map((word) => {
+        wordList.push(word.word)
+      });
+      console.log(wordList)
+      //add words to wordList
+      // console.log(wordList.length)
+      this.setState({
+        wordList,
+      }, () => {
+        const shuffledWords = _.shuffle(wordList)
+        this.props.passChildState('wordList', shuffledWords)
+        this.props.history.push("/fridge")
+      })
+      // return verbList.word
+
+    })
+  }
+
   // make api calls, pass wordlist to state
   setWordList = () => {
-    const wordList = []
     Promise.all([
-      this.getWordList('ml', 20),
+      this.getWordList('ml', 15),
       this.getWordList('rel_trg', 10),
       this.getWordList('rel_jjb', 10),
+
     ]).then((res) => {
       res.map(({ data }) => {
         data.map(({ word }) => {
           wordList.push(word)
         })
       })
-
-      this.setState({
-        wordList,
-      }, () => {
-        this.props.passChildState('wordList', this.state.wordList)
-      })
+      this.getVerbs('ml', this.state.queryInput, '300')
     })
   }
 
@@ -114,37 +141,40 @@ class Form extends Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
-        <input id="queryInput" onChange={this.handleChange} type="text" name="" value={this.state.queryInput} readOnly={this.state.topicSelected ? true : false} />
-        {this.state.queryInput ?
-          <ul>
-            {
-              this.state.autoSuggest.map((word, i) => {
-                return (
-                  <li onClick={this.getElementOnClick} key={i}>{word}</li>
-                )
-              })
-            }
-          </ul> : null}
-        <fieldset className="category-options">
-          <input onBlur={this.handleChange} onClick={this.toggleRadio} type="radio" name="category" value="Love" id="love" />
-          <label htmlFor="love"> Love </label>
+      <section className="wrapper">
+        <h1>Magnetic Poetry</h1>
+        <form onSubmit={this.handleSubmit}>
+          <input id="queryInput" onChange={this.handleChange} type="text" name="" value={this.state.queryInput} readOnly={this.state.topicSelected ? true : false} />
+          {this.state.queryInput ?
+            <ul>
+              {
+                this.state.autoSuggest.map((word, i) => {
+                  return (
+                    <li className="show" onClick={this.getElementOnClick} key={i}>{word}</li>
+                  )
+                })
+              }
+            </ul> : null}
+          <fieldset className="category-options">
+            <input onBlur={this.handleChange} onClick={this.toggleRadio} type="radio" name="category" value="Love" id="love" />
+            <label htmlFor="love"> Love </label>
 
-          <input onBlur={this.handleChange} onClick={this.toggleRadio} type="radio" name="category" value="Yoga" id="yoga" />
-          <label htmlFor="yoga"> Yoga </label>
+            <input onBlur={this.handleChange} onClick={this.toggleRadio} type="radio" name="category" value="Yoga" id="yoga" />
+            <label htmlFor="yoga"> Yoga </label>
 
-          <input onBlur={this.handleChange} onClick={this.toggleRadio} type="radio" name="category" value="Astrology" id="astrology" />
-          <label htmlFor="astrology"> Astrology </label>
+            <input onBlur={this.handleChange} onClick={this.toggleRadio} type="radio" name="category" value="Astrology" id="astrology" />
+            <label htmlFor="astrology"> Astrology </label>
 
-          <input onBlur={this.handleChange} onClick={this.toggleRadio} type="radio" name="category" value="Apocalypse" id="apocalypse" />
-          <label htmlFor="apocalypse"> Apocalypse </label>
+            <input onBlur={this.handleChange} onClick={this.toggleRadio} type="radio" name="category" value="Apocalypse" id="apocalypse" />
+            <label htmlFor="apocalypse"> Apocalypse </label>
 
-          <input onBlur={this.handleChange} onClick={this.toggleRadio} type="radio" name="category" value="Shakespeare" id="shakespeare" />
-          <label htmlFor="shakespeare"> Shakespeare </label>
+            <input onBlur={this.handleChange} onClick={this.toggleRadio} type="radio" name="category" value="Shakespeare" id="shakespeare" />
+            <label htmlFor="shakespeare"> Shakespeare </label>
 
-        </fieldset>
-        <input type="submit" value="Give me Words" id="" />
-      </form>
+          </fieldset>
+          <input type="submit" value="Give me Words" id="" />
+        </form>
+      </section>
     )
   }
 }
