@@ -1,9 +1,31 @@
-.show{
+.fridge-container{
+    background: url(./assets/fridge.svg);
+    background-size: 180%;
+    height: 100vh;
+    background-repeat: no-repeat;
+    background-position: top;
+        h1{
+            font-family: $headerfont;
+            text-align: center;
+            font-size: 3rem;
+        }
+}
+
+
+.show,
+button{
     background: white;
     width: auto;
     float: left;
     margin: 10px;
-    padding: 10px;
+    padding: 5px;
     list-style: none;
     box-shadow: 2px 5px;
+    font-family: $basefont;
+    text-transform: capitalize;
+}
+
+.poem-dashboard{
+    padding: 20px;
+    background:grey;
 }

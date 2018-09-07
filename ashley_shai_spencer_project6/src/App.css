@@ -144,13 +144,45 @@ legend, button::-moz-focus-inner, input::-moz-focus-inner {
 
 .poem-dashboard {
   float: left;
-  width: 30%; }
+  margin-top: 20px;
+  margin-bottom: 0;
+  width: 30%;
+  border-radius: 10%;
+  height: 97vh;
+  text-align: center; }
 
-.show {
+.fridge-container {
+  background: url(./assets/fridge.svg);
+  background-size: 180%;
+  height: 100vh;
+  background-repeat: no-repeat;
+  background-position: top; }
+  .fridge-container h1 {
+    font-family: "Varela Round", sans-serif;
+    text-align: center;
+    font-size: 3rem; }
+
+.show,
+button {
   background: white;
   width: auto;
   float: left;
   margin: 10px;
-  padding: 10px;
+  padding: 5px;
   list-style: none;
-  box-shadow: 2px 5px; }
+  box-shadow: 2px 5px;
+  font-family: "Cabin", sans-serif;
+  text-transform: capitalize; }
+
+.poem-dashboard {
+  padding: 20px;
+  background: grey; }
+
+form {
+  text-align: center; }
+
+Input[type=radio] {
+  display: none; }
+
+label {
+  margin: 10px; }

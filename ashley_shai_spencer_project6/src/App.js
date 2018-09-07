@@ -97,7 +97,7 @@ class App extends Component {
         <div className="wrapper">
           <main>
             <section className="fridge-container">
-              <h1>Sug Fun!</h1>
+              <h1>Magnetic Poetry</h1>
               <Form passChildState={this.passChildState} queryInput={this.state.queryInput} />
               <ul>
                 {
