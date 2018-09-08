@@ -198,6 +198,10 @@ ul {
   list-style: none;
   padding: 0; }
 
+.dropzone {
+  min-height: 500px;
+  z-index: 10; }
+
 form {
   text-align: center; }
 
