@@ -51,7 +51,7 @@ class App extends Component {
               }/>
 
               <Route path="/poem/:poemKey" render={(props) =>
-                <Poem {...props} selectedWords={this.state.selectedWords}/>}
+                <Poem {...props} selectedWords={this.state.selectedWords} passChildState={this.passChildState}/>}
               />
             </main>
           </div>

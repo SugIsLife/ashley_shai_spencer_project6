@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import firebase from './firebase';
 
-let poemArray = [];
+
 class Poem extends Component {
   constructor(){
     super()
@@ -29,22 +29,21 @@ class Poem extends Component {
     })
     
   }
+
+  makeYourOwn = () => {
+    // this.props.history.push('/').then(window.location.reload());
+    this.props.passChildState('wordList', []);
+    console.log('clicked make your own')
+    this.props.history.push('/');
+    
+  }
  
   render() {
   return (
     <div>
       <h1>POEM SECTION</h1>
-      <Link to="/" >Make Your Own</Link>
+      <button onClick={this.makeYourOwn}>Make Your Own</button>
       <ul>
-        {/* { this.state.poemArray ?
-          this.state.poemArray.map((word) => {
-            console.log(word);
-            return (
-              <li className="show">{word}</li>
-            )
-          })
-          : null
-        } */}
         {this.state.poemArray.map( (data, i) => {
           return (
           <li className="show" key={i}> {data} </li>
