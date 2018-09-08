@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import firebase from './firebase';
 
-let poemArray = [];
+
 class Poem extends Component {
   constructor(){
     super()
@@ -14,25 +14,31 @@ class Poem extends Component {
   componentDidMount = () => {
     const fullPath = this.props.location.pathname;
     const poemKey = fullPath.split('/')[2];
-    // console.log(poemKey);
     const dbRef = firebase.database().ref(`/${poemKey}`);
-    // console.log(dbRef);
     dbRef.once('value').then((snapshot) => {
       console.log('getting snapshot')
       return (snapshot.val())
       // return poemArray = snapshot.val();
     }).then((data)=> {
-      console.log(data);
       this.setState({
         poemArray: data,
       })
     })
   }
+
+  makeYourOwn = () => {
+    // this.props.history.push('/').then(window.location.reload());
+    this.props.passChildState('wordList', []);
+    console.log('clicked make your own')
+    this.props.history.push('/');
+    
+  }
+
   render() {
   return (
     <div>
       <h1>POEM SECTION</h1>
-      <Link to="/" >Make Your Own</Link>
+      <button onClick={this.makeYourOwn}>Make Your Own</button>
       <ul>
         {this.state.poemArray.map( (data, i) => {
           return (

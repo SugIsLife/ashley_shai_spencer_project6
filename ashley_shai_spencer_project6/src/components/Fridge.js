@@ -12,6 +12,10 @@ class Fridge extends Component{
     }
   }
 
+  componentDidMount() {
+    // console.log(this.state.wordList);
+  }
+
   addToFridge = (e) => {
     // const wordList = e.target.parentElement.id
     const tempSelected = this.state.wordList.slice(0);
@@ -45,18 +49,24 @@ class Fridge extends Component{
   }
 
   sharePoem = (e) => {
-    
+    //check to see if there are words in the poem 
     if (this.state.selectedWords.length > 0) {
-    this.props.passChildState("selectedWords", this.state.selectedWords)
+      this.props.passChildState("selectedWords", this.state.selectedWords)
+
+      this.props.passChildState("wordList", [])
+
+      this.setState({
+        wordList: [],
+      }, () => {
+        console.log('fridge state set')
+        const dbRef = firebase.database().ref();
+        const poemKey = dbRef.push(this.state.selectedWords).key;
+        //update URL path to go to poem component 
+        this.props.history.push(`/poem/${poemKey}`)
+      })
+          
     // pass selected words to firebase
-    const dbRef = firebase.database().ref();
-    const poemKey = dbRef.push(this.state.selectedWords).key;
-    // this.setState({
-    //   poemKey,
-    // }, () => {
-    //   this.props.passChildState("poemKey", this.state.poemKey)
-    // })
-    this.props.history.push(`/poem/${poemKey}`)
+    
     } else {
       alert('why are you sharing an empty poem?!')
     }
@@ -66,6 +76,7 @@ class Fridge extends Component{
   resetPage = () => {
     window.location.reload();
   }
+
   render(){
     return (
       <div className="clearfix">

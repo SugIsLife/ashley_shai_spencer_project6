@@ -5,7 +5,7 @@ import axios from 'axios';
 import _ from 'underscore';
 import Filter from 'bad-words';
 
-const wordList = ['or', 'if', 'the', 'a', 'it', 'does', 'they', 'their', 'his', 'her', 'and', 'our', 'out', 'we', 'in', 'to', 'too', 'me', 'ly', 'ing', 'd', 'ed', 'ful', 'y', 'anti', 'un', 're']
+let wordList = ['or', 'if', 'the', 'a', 'it', 'does', 'they', 'their', 'his', 'her', 'and', 'our', 'out', 'we', 'in', 'to', 'too', 'me', 'ly', 'ing', 'd', 'ed', 'ful', 'y', 'anti', 'un', 're', '!', '?']
 
 class Form extends Component {
   constructor(props) {
@@ -18,11 +18,18 @@ class Form extends Component {
       wordList: [],
     }
   }
-
+  
+  componentDidMount() {
+    console.log(this.state.wordList);
+    // this.setState({
+    //   wordList: []
+    // })
+  }
   // function makes an api call for auto suggestions and returns a promise
   suggestionQuery = (input) => {
     return axios.get(`https://api.datamuse.com/sug?s=${input}`)
   }
+
 
   handleChange = (e) => {
     // To make this function generic, set the changed input's key to be its id and value to be its value.
@@ -111,10 +118,10 @@ class Form extends Component {
 
       })
       //get array of just the words
+      // console.log(wordList)
       verbs.slice(0, 10).map((word) => {
         wordList.push(word.word)
       });
-      console.log(wordList)
       this.setState({
         wordList,
       }, () => {
@@ -129,6 +136,9 @@ class Form extends Component {
 
   // make api calls, pass wordlist to state
   setWordList = () => {
+    wordList = ['or', 'if', 'the', 'a', 'it', 'does', 'they', 'their', 'his', 'her', 'and', 'our', 'out', 'we', 'in', 'to', 'too', 'me', 'ly', 'ing', 'd', 'ed', 'ful', 'y', 'anti', 'un', 're', '!', '?']
+    console.log(wordList);
+    
     Promise.all([
       this.getWordList('ml', 15),
       this.getWordList('rel_trg', 10),
@@ -136,7 +146,9 @@ class Form extends Component {
 
     ]).then((res) => {
       res.map(({ data }) => {
+        
         data.map(({ word }) => {
+          
           wordList.push(word)
         })
       })
