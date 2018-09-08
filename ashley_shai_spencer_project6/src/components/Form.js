@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import '../App.css';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import _ from 'underscore'
+import _ from 'underscore';
+import Filter from 'bad-words';
 
 let wordList = ['or', 'if', 'the', 'a', 'it', 'does', 'they', 'their', 'his', 'her', 'and', 'our', 'out', 'we', 'in', 'to', 'too', 'me', 'ly', 'ing', 'd', 'ed', 'ful', 'y', 'anti', 'un', 're', '!', '?']
 
@@ -36,8 +37,8 @@ class Form extends Component {
       [e.target.id]: e.target.value,
     })
 
-    // On change && only if the target's id is the queryValue, query the api for suggestions using the event target's value as the input
-    if (e.target.id === "queryInput") {
+    // On change && only if the target's id is the queryValue && there is no word evaluted as a swear word, query the api for suggestions using the event target's value as the input
+    if (e.target.id === "queryInput" && !this.profanityFilter(e.target.value)) {
       this.suggestionQuery(e.target.value)
         .then(({ data }) => {
           // map over the suggestions, returning an array of just the words
@@ -49,6 +50,11 @@ class Form extends Component {
             autoSuggest
           })
         })
+    } else {
+      alert('You can\'t swear here')
+      this.setState({
+        queryInput: '',
+      })
     }
 
   }
@@ -84,6 +90,15 @@ class Form extends Component {
     })
   }
 
+  // a function that evaluates a string for any profanity 
+  profanityFilter = (input) => {
+    // create a new profanity filter that replaces swear words with spaces
+    const filter = new Filter({ placeHolder: ' ' })
+    // run our input through the clean method to evaluate it, trimming any whitespace
+    const clean = filter.isProfane(`${input}`)
+    return clean
+  }
+
   // Make an api call to get words from an input - returns a promise
   getWordsQuery = (queryType, input, num) => {
     return axios.get(`https://api.datamuse.com/words?${queryType}=${input}&max=${num}`)
@@ -107,9 +122,6 @@ class Form extends Component {
       verbs.slice(0, 10).map((word) => {
         wordList.push(word.word)
       });
-      // console.log(wordList)
-      //add words to wordList
-      // console.log(wordList.length)
       this.setState({
         wordList,
       }, () => {
@@ -146,7 +158,11 @@ class Form extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    this.setWordList()
+    if (!this.state.queryInput) {
+      return alert('To make a poem, you need to enter a word in, dummy!')
+    } else {
+      this.setWordList()
+    }
     this.setState({
       autoSuggest: [],
     })

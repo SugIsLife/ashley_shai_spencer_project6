@@ -14,20 +14,16 @@ class Poem extends Component {
   componentDidMount = () => {
     const fullPath = this.props.location.pathname;
     const poemKey = fullPath.split('/')[2];
-    // console.log(poemKey);
     const dbRef = firebase.database().ref(`/${poemKey}`);
-    // console.log(dbRef);
     dbRef.once('value').then((snapshot) => {
       console.log('getting snapshot')
       return (snapshot.val())
       // return poemArray = snapshot.val();
     }).then((data)=> {
-      console.log(data);
       this.setState({
         poemArray: data,
       })
     })
-    
   }
 
   makeYourOwn = () => {
@@ -37,7 +33,7 @@ class Poem extends Component {
     this.props.history.push('/');
     
   }
- 
+
   render() {
   return (
     <div>

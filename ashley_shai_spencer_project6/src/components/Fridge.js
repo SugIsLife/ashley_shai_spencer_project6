@@ -13,7 +13,7 @@ class Fridge extends Component{
   }
 
   componentDidMount() {
-    console.log(this.state.wordList);
+    // console.log(this.state.wordList);
   }
 
   addToFridge = (e) => {
@@ -59,7 +59,6 @@ class Fridge extends Component{
         wordList: [],
       }, () => {
         console.log('fridge state set')
-        console.log(this.state.wordList);
         const dbRef = firebase.database().ref();
         const poemKey = dbRef.push(this.state.selectedWords).key;
         //update URL path to go to poem component 
