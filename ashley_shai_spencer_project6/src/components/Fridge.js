@@ -45,6 +45,8 @@ class Fridge extends Component{
   }
 
   sharePoem = (e) => {
+    
+    if (this.state.selectedWords.length > 0) {
     this.props.passChildState("selectedWords", this.state.selectedWords)
     // pass selected words to firebase
     const dbRef = firebase.database().ref();
@@ -55,6 +57,9 @@ class Fridge extends Component{
     //   this.props.passChildState("poemKey", this.state.poemKey)
     // })
     this.props.history.push(`/poem/${poemKey}`)
+    } else {
+      alert('why are you sharing an empty poem?!')
+    }
 
   }
 

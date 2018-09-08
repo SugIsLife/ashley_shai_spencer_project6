@@ -2,45 +2,54 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import firebase from './firebase';
 
+let poemArray = [];
 class Poem extends Component {
   constructor(){
     super()
     this.state = {
-      poemArray = [],
+      poemArray: [],
     }
   }
-  // console.log(props.selectedWords);
+
   componentDidMount = () => {
     const fullPath = this.props.location.pathname;
     const poemKey = fullPath.split('/')[2];
-    console.log(poemKey);
+    // console.log(poemKey);
     const dbRef = firebase.database().ref(`/${poemKey}`);
-    console.log(dbRef);
+    // console.log(dbRef);
     dbRef.once('value').then((snapshot) => {
-      console.log(snapshot.val())
-      poemArray = snapshot.val();
+      console.log('getting snapshot')
+      return (snapshot.val())
+      // return poemArray = snapshot.val();
+    }).then((data)=> {
+      console.log(data);
+      this.setState({
+        poemArray: data,
+      })
     })
-    // this needs to be fixed
-    this.setState({
-      poemArray: poemArray;
-    })
+    
   }
  
   render() {
   return (
     <div>
       <h1>POEM SECTION</h1>
-      <Link to="/" >Back</Link>
+      <Link to="/" >Make Your Own</Link>
       <ul>
-        { poemArray.length > 0 ?
-          poemArray.map((word) => {
+        {/* { this.state.poemArray ?
+          this.state.poemArray.map((word) => {
             console.log(word);
-            return(
+            return (
               <li className="show">{word}</li>
             )
           })
           : null
-        }
+        } */}
+        {this.state.poemArray.map( (data, i) => {
+          return (
+          <li className="show" key={i}> {data} </li>
+          )}
+        )}
       </ul>
     </div>
   )

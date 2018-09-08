@@ -50,7 +50,7 @@ class App extends Component {
                 <Fridge {...props} wordList={this.state.wordList} passChildState={this.passChildState}/>
               }/>
 
-              <Route path="/poem"  render={(props) =>
+              <Route path="/poem/:poemKey" render={(props) =>
                 <Poem {...props} selectedWords={this.state.selectedWords}/>}
               />
             </main>
