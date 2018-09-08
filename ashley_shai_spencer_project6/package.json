@@ -11,6 +11,7 @@
     "react": "^16.4.2",
     "react-dom": "^16.4.2",
     "react-scripts": "1.1.5",
+    "react-sortable-hoc": "^0.8.3",
     "underscore": "^1.9.1"
   },
   "scripts": {
