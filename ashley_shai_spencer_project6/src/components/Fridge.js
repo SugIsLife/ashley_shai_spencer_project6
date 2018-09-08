@@ -82,13 +82,13 @@ class Fridge extends Component{
       <div className="clearfix">
         <h1>Le fridge</h1>
         <section className="fridge-container">
-          <ul>
+          <ul id="fridge-words">
             {
               this.state.selectedWords
                 ?
                 this.state.selectedWords.map((word, i) => {
                   return (
-                    <li className="show" key={i} onClick={this.removeFromFridge}>{word}</li>
+                    <li className="show" key={i} onDragOver={this.removeFromFridge}>{word}</li>
                   )
                 }) :
                 null

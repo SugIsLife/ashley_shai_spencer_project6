@@ -5,7 +5,7 @@ import axios from 'axios';
 import _ from 'underscore';
 import Filter from 'bad-words';
 
-let wordList = ['or', 'if', 'the', 'a', 'it', 'does', 'they', 'their', 'his', 'her', 'and', 'our', 'out', 'we', 'in', 'to', 'too', 'me', 'ly', 'ing', 'd', 'ed', 'ful', 'y', 'anti', 'un', 're', '!', '?']
+let wordList = []
 
 class Form extends Component {
   constructor(props) {
@@ -16,14 +16,12 @@ class Form extends Component {
       // Prototyping our array of returned suggestions
       autoSuggest: [],
       wordList: [],
+      topic: '',
     }
   }
   
   componentDidMount() {
     console.log(this.state.wordList);
-    // this.setState({
-    //   wordList: []
-    // })
   }
   // function makes an api call for auto suggestions and returns a promise
   suggestionQuery = (input) => {
@@ -103,7 +101,6 @@ class Form extends Component {
   getWordsQuery = (queryType, input, num) => {
     return axios.get(`https://api.datamuse.com/words?${queryType}=${input}&max=${num}`)
   }
-
   // take our api calls, and format,collect and reduce the results to a single array
   getWordList = (queryType, num, ) => {
     return this.getWordsQuery(queryType, this.state.queryInput, num)
@@ -118,7 +115,6 @@ class Form extends Component {
 
       })
       //get array of just the words
-      // console.log(wordList)
       verbs.slice(0, 10).map((word) => {
         wordList.push(word.word)
       });
@@ -138,11 +134,25 @@ class Form extends Component {
   setWordList = () => {
     wordList = ['or', 'if', 'the', 'a', 'it', 'does', 'they', 'their', 'his', 'her', 'and', 'our', 'out', 'we', 'in', 'to', 'too', 'me', 'ly', 'ing', 'd', 'ed', 'ful', 'y', 'anti', 'un', 're', '!', '?']
     console.log(wordList);
+
+    // A conditional to get us shakespearean words
+    if(this.state.queryInput === "Shakespeare"){
+      wordList = ['if', 'the', 'a', 'it', 'ly', 'ing', 'd', 'ed', 'ful', 'y', 'anti', 'un', 're', '!', '?', 'his', 'her']
+      this.getWordsQuery('rel_trg', 'thou', 15).then(({data}) => {
+        data.map((word) => wordList.push(word.word))
+        console.log(wordList);
+      })
+    }
     
     Promise.all([
-      this.getWordList('ml', 15),
-      this.getWordList('rel_trg', 10),
-      this.getWordList('rel_jjb', 10),
+      this.getWordList('ml', 7),
+      this.getWordList('rel_trg', 6),
+      this.getWordList('rel_jjb', 6),
+      this.getWordList('rel_rhy', 5),
+      this.getWordList('rel_bga', 3),
+      this.getWordList('rel_bgb', 3),
+      this.getWordList('rel_spc', 3),
+      this.getWordList('rel_gen', 3),
 
     ]).then((res) => {
       res.map(({ data }) => {
