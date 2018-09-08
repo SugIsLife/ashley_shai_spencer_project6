@@ -27,24 +27,13 @@ class Poem extends Component {
         poemArray: data,
       })
     })
-    
   }
- 
   render() {
   return (
     <div>
       <h1>POEM SECTION</h1>
       <Link to="/" >Make Your Own</Link>
       <ul>
-        {/* { this.state.poemArray ?
-          this.state.poemArray.map((word) => {
-            console.log(word);
-            return (
-              <li className="show">{word}</li>
-            )
-          })
-          : null
-        } */}
         {this.state.poemArray.map( (data, i) => {
           return (
           <li className="show" key={i}> {data} </li>
