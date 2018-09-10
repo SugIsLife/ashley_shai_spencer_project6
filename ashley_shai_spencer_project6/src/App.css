@@ -230,6 +230,16 @@ ul {
   z-index: 10;
   border-radius: 2rem; }
 
+#word-list {
+  width: 500px;
+  height: 500px;
+  float: left; }
+
+#fridge-words {
+  width: 500px;
+  height: 500px;
+  float: left; }
+
 Input[type=radio] {
   display: none; }
 
