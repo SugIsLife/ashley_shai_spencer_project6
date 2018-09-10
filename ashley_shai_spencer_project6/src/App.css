@@ -217,6 +217,7 @@ ul {
   z-index: 10;
   border-radius: 2rem; }
 
+<<<<<<< HEAD
 .main-form {
   text-align: center;
   position: relative; }
@@ -245,6 +246,19 @@ ul {
     border: 3px solid #FE0046; }
 
 input[type=radio] {
+=======
+#word-list {
+  width: 500px;
+  height: 500px;
+  float: left; }
+
+#fridge-words {
+  width: 500px;
+  height: 500px;
+  float: left; }
+
+Input[type=radio] {
+>>>>>>> bf1e97f39ca59e32e845c3fd2b960cb7f1653e3d
   display: none; }
 
 label {
