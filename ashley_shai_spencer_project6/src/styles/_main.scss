@@ -4,17 +4,24 @@
     height: 100vh;
     background-repeat: no-repeat;
     background-position: top;
-        h1{
-            font-family: $headerfont;
-            text-align: center;
-            font-size: 3rem;
-        }
+    padding: 4rem 10rem;
+}
+h1{
+    font-family: $headerfont;
+    text-align: center;
+    font-size: 2rem;
+    // font-weight: 700;
+}
+.poem-dashboard{
+    padding: 20px;
+    background: white;
 }
 
 
 .show,
 button{
     background: white;
+    cursor: pointer;
     width: auto;
     float: left;
     margin: 10px;
@@ -27,16 +34,16 @@ button{
     text-transform: capitalize;
 }
 
-.poem-dashboard{
-    padding: 20px;
-    background:grey;
-}
 ul{
     list-style: none;
     padding: 0;
 }
 
 .dropzone {
-    min-height: 500px;
+    max-height: 100%;
+    height: 1000px;
     z-index: 10;
+    border-radius: 2rem;
+    // background-color: $green;
+    // mix-blend-mode: multiply;
 }

@@ -1,17 +1,7 @@
 import React, { Component } from 'react';
 import '../App.css';
 import { Link } from 'react-router-dom';
-import { SortableContainer, SortableElement, arrayMove } from 'react-sortable-hoc';
 import firebase from './firebase';
-
-
-// document.addEventListener("dragenter", function (event) {
-//   // highlight potential drop target when the draggable element enters it
-//   if (event.target.className == "dropzone") {
-//     event.target.style.background = "purple";
-//   }
-
-// }, false);
 
 
 class Fridge extends Component{
@@ -67,35 +57,6 @@ class Fridge extends Component{
 
   }
 
- 
-
-  // addToFridge = (e) => {
-  //   // const wordList = e.target.parentElement.id
-  //   const tempSelected = this.state.wordList.slice(0);
-  //   const index = this.getIndexOfClicked(e.target, this.state.wordList)
-  //   const removedWord = tempSelected.splice(index, 1);
-
-  //   this.setState(prevState => ({
-  //     selectedWords: [...prevState.selectedWords, removedWord[0]],
-  //     wordList: tempSelected
-  //   }))
-  // }
-
-  // removeFromFridge = (e) => {
-  //   //on click on li, remove item from selectedWords array and put in wordList array
-  //   // copy selectedWords
-  //   const tempSelected = this.state.selectedWords.slice(0);
-  //   //get index of clicked word in the array
-  //   const index = this.getIndexOfClicked(e.target, this.state.selectedWords)
-  //   //remove that word from the array
-  //   const removedWord = tempSelected.splice(index, 1);
-  //   //update the state by adding new spliced array and pushing removed word to other array
-  //   this.setState(prevState => ({
-  //     wordList: [...prevState.wordList, removedWord[0]],
-  //     selectedWords: tempSelected
-  //   }));
-  // }
-
   getIndexOfClicked = (clickedItem, array) => {
     // const clickedWord = clickedItem.innerHTML
     return array.indexOf(clickedItem);
@@ -140,36 +101,31 @@ class Fridge extends Component{
         <section className="fridge-container">
           <ul id="fridge-words" className="dropzone"
             onDragOver={(e) => this.onDragOver(e)}
-            onDrop={(e) => this.onDrop(e, "selectedWords")}>
-            >
-                        {
+            onDrop={(e) => this.onDrop(e, "selectedWords")}>{
               this.state.selectedWords
-                ?
-                this.state.selectedWords.map((word, i) => {
-                  return (
-                    <li key={i}
-                      id={word}
-                      draggable
-                      onDragStart={(e) => {
-                        this.onDragStart(e, e.target.id)
-                      }} className="show">{word}</li>
-                  )
-                }) :
-                null
+              ?
+              this.state.selectedWords.map((word, i) => {
+                return (
+                  <li key={i}
+                    id={word}
+                    draggable
+                    onDragStart={(e) => {
+                      this.onDragStart(e, e.target.id)
+                    }} className="show">{word}</li>
+                )
+              })
+              :
+              null
             }
           </ul>
         </section>
         <aside className="poem-dashboard">
-          {/* <button className="reset" onClick={this.resetPage}>Reset</button>
-                   
-                    <Link to="/" >Back</Link> */}
           <button className="share-poem show" onClick={this.sharePoem}>Share Poem</button>
           <section className="word-container">
             <ul className="dropzone" id="word-list"
               onDragOver={(e) => this.onDragOver(e)}
               onDrop={(e) => this.onDrop(e, "wordList")}>
-              >
-                            {/* map through the word choices array and create an li for each word  */}
+              {/* map through the word choices array and create an li for each word  */}
               {
                 this.state.wordList
                   ?

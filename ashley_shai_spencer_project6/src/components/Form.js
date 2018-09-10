@@ -1,9 +1,16 @@
 import React, { Component } from 'react';
 import '../App.css';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import axios from 'axios';
 import _ from 'underscore';
 import Filter from 'bad-words';
+
+// IMAGES
+import LoveIcon from '../assets/cupid.svg';
+import YogaIcon from '../assets/yoga.svg';
+import ApocalypseIcon from '../assets/apocalypse.svg';
+import AstrologyIcon from '../assets/astrology.svg';
+import ShakespeareIcon from '../assets/shakespeare.svg';
 
 let wordList = []
 
@@ -180,9 +187,10 @@ class Form extends Component {
 
   render() {
     return (
-      <section className="wrapper">
+      <section className="wrapper main-form">
         <h1>Magnetic Poetry</h1>
         <form onSubmit={this.handleSubmit}>
+        <div>
           <input id="queryInput" onChange={this.handleChange} type="text" name="" value={this.state.queryInput} readOnly={this.state.topicSelected ? true : false} />
           {this.state.queryInput ?
             <ul>
@@ -194,21 +202,39 @@ class Form extends Component {
                 })
               }
             </ul> : null}
-          <fieldset className="category-options">
-            <input onBlur={this.handleChange} onClick={this.toggleRadio} type="radio" name="category" value="Love" id="love" />
-            <label htmlFor="love"> Love </label>
-
-            <input onBlur={this.handleChange} onClick={this.toggleRadio} type="radio" name="category" value="Yoga" id="yoga" />
-            <label htmlFor="yoga"> Yoga </label>
-
-            <input onBlur={this.handleChange} onClick={this.toggleRadio} type="radio" name="category" value="Astrology" id="astrology" />
-            <label htmlFor="astrology"> Astrology </label>
-
-            <input onBlur={this.handleChange} onClick={this.toggleRadio} type="radio" name="category" value="Apocalypse" id="apocalypse" />
-            <label htmlFor="apocalypse"> Apocalypse </label>
+        </div>
+          <fieldset className="category-options clearfix">
 
             <input onBlur={this.handleChange} onClick={this.toggleRadio} type="radio" name="category" value="Shakespeare" id="shakespeare" />
-            <label htmlFor="shakespeare"> Shakespeare </label>
+            <label htmlFor="shakespeare">
+              <h3>Shakespeare</h3>
+              <img src={ShakespeareIcon} alt="Make a poem based on the 'Shakespeare' topic" />
+            </label>
+
+            <input onBlur={this.handleChange} onClick={this.toggleRadio} type="radio" name="category" value="Love" id="love" />
+            <label htmlFor="love">
+              <h3>Love</h3>
+              <img src={LoveIcon} alt="Make a poem based on the 'Love' topic"/>
+              {/* <LoveIcon /> */}
+            </label>
+
+            <input onBlur={this.handleChange} onClick={this.toggleRadio} type="radio" name="category" value="Yoga" id="yoga" />
+            <label htmlFor="yoga">
+              <h3>Yoga</h3>
+              <img src={YogaIcon} alt="Make a poem based on the 'Yoga' topic" />
+            </label>
+
+            <input onBlur={this.handleChange} onClick={this.toggleRadio} type="radio" name="category" value="Astrology" id="astrology" />
+            <label htmlFor="astrology">
+              <h3>Astrology</h3>
+              <img src={AstrologyIcon} alt="Make a poem based on the 'Astrology' topic" />
+            </label>
+
+            <input onBlur={this.handleChange} onClick={this.toggleRadio} type="radio" name="category" value="Apocalypse" id="apocalypse" />
+            <label htmlFor="apocalypse">
+              <h3>Apocalypse</h3>
+              <img src={ApocalypseIcon} alt="Make a poem based on the 'Apocalypse' topic" />
+            </label>
 
           </fieldset>
           <input type="submit" value="Give me Words" id="" />
