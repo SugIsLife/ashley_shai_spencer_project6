@@ -10,49 +10,62 @@ class Fridge extends Component{
     this.state = {
       wordList: this.props.wordList,
       selectedWords: [],
+      currentDrag: ''
     }
   }
 
   onDragStart = (ev, id) => {
-    console.log('dragstart:', id);
+    console.log('dragstart:', ev.target.parentNode, id);
     ev.dataTransfer.setData("id", id);
+    this.setState({
+      currentDrag: ev.target.parentNode.id
+    })
   }
 
   onDragOver = (ev) => {
     ev.preventDefault();
     // ev.target.
-    if(ev.target.className == "dropzone") {
-    ev.target.style.background = "purple";
-  }
+  //   if(ev.target.className == "dropzone") {
+  //   ev.target.style.background = "purple";
+  // }
 }
 
   onDrop = (ev, cat) => {
     let id = ev.dataTransfer.getData('id');
-    ev.target.style.background = "";
-    // console.log(ev, cat);
+    // ev.target.style.background = "";
+    console.log('ev:', ev.target);
+    console.log('cat:',cat);
 
-    if (cat == 'selectedWords') {
+    if (cat == 'selectedWords' && this.state.currentDrag == 'word-list') {
       const tempSelected = this.state.wordList.slice(0);
-      console.log('onDrop:', id);
+      // console.log('onDrop:', id);
+      console.log('selected words firing')
       const index = this.getIndexOfClicked(id, this.state.wordList)
       const removedWord = tempSelected.splice(index, 1);
-
+      console.log(removedWord)
       this.setState(prevState => ({
         selectedWords: [...prevState.selectedWords, removedWord[0]],
-        wordList: tempSelected
+        wordList: tempSelected,
+        currentDrag: ''
       }))
-    } else if (cat == 'wordList') {
+    } else if (cat == 'wordList' && this.state.currentDrag == 'fridge-words') {
       const tempSelected = this.state.selectedWords.slice(0);
-      console.log('onDrop:', id);
+      // console.log('onDrop:', id);
+      console.log('word list firing')
       //get index of clicked word in the array
       const index = this.getIndexOfClicked(id, this.state.selectedWords)
       //remove that word from the array
       const removedWord = tempSelected.splice(index, 1);
+      console.log(removedWord)
       //update the state by adding new spliced array and pushing removed word to other array
       this.setState(prevState => ({
         wordList: [...prevState.wordList, removedWord[0]],
-        selectedWords: tempSelected
+        selectedWords: tempSelected,
+        currentDrag: ''
+        
       }));
+
+      
     }
 
   }

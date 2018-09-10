@@ -217,12 +217,12 @@ button {
   padding: 10px;
   list-style: none;
   box-shadow: 2px 5px;
-  font-family: "Cabin", sans-serif;
-  text-transform: capitalize; }
+  font-family: "Cabin", sans-serif; }
 
 ul {
   list-style: none;
-  padding: 0; }
+  padding: 0;
+  border: 1px solid grey; }
 
 .dropzone {
   max-height: 100%;
