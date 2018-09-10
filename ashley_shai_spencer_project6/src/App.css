@@ -230,11 +230,11 @@ ul {
   z-index: 10;
   border-radius: 2rem; }
 
-form {
-  text-align: center; }
-
 Input[type=radio] {
   display: none; }
 
 label {
   margin: 10px; }
+
+.logo, h1 {
+  width: 50vmin; }

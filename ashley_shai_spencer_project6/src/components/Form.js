@@ -5,6 +5,7 @@ import YogaIcon from '../assets/yoga.svg';
 import ApocalypseIcon from '../assets/apocalypse.svg';
 import AstrologyIcon from '../assets/astrology.svg';
 import ShakespeareIcon from '../assets/shakespeare.svg';
+import OdeLogo from '../assets/odeLogo.svg';
 import '../App.css';
 // import { Link } from 'react-router-dom';
 import axios from 'axios';
@@ -188,7 +189,10 @@ class Form extends Component {
   render() {
     return (
       <section className="wrapper main-form">
-        <h1>Magnetic Poetry</h1>
+        <header>
+          <img src={OdeLogo} alt="An ode to magnetic fridge poems" className="logo"/>
+          <h1>Magnetic Poetry</h1>
+        </header>
         <form onSubmit={this.handleSubmit}>
         <div>
           <input id="queryInput" onChange={this.handleChange} type="text" name="" value={this.state.queryInput} readOnly={this.state.topicSelected ? true : false} />
