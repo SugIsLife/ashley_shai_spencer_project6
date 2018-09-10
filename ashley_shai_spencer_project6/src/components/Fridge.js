@@ -164,8 +164,6 @@ class Fridge extends Component{
                       draggableId={item}
                       index={index}>
                       {(provided, snapshot) => (
-                  
-                 
                         <li 
                           ref={provided.innerRef}
                           {...provided.draggableProps}
@@ -179,7 +177,7 @@ class Fridge extends Component{
                         </li>
                       )}
                     </Draggable>
-                   ))}
+                  ))}
                   {provided.placeholder}
                 </ul>
               )}
