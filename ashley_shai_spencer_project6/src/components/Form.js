@@ -1,4 +1,10 @@
 import React, { Component } from 'react';
+// import { Link } from 'react-router-dom';
+import '../App.css';
+import axios from 'axios';
+import _ from 'underscore';
+import Filter from 'bad-words';
+
 // IMAGES
 import LoveIcon from '../assets/cupid.svg';
 import YogaIcon from '../assets/yoga.svg';
@@ -6,12 +12,6 @@ import ApocalypseIcon from '../assets/apocalypse.svg';
 import AstrologyIcon from '../assets/astrology.svg';
 import ShakespeareIcon from '../assets/shakespeare.svg';
 import OdeLogo from '../assets/odeLogo.svg';
-import '../App.css';
-// import { Link } from 'react-router-dom';
-import axios from 'axios';
-import _ from 'underscore';
-import Filter from 'bad-words';
-
 
 let wordList = []
 
@@ -167,7 +167,7 @@ class Form extends Component {
         
         data.map(({ word }) => {
           
-          wordList.push(word.toLowerCase())
+          wordList.push(word)
         })
       })
       this.getVerbs('ml', this.state.queryInput, '300')
@@ -188,14 +188,19 @@ class Form extends Component {
 
   render() {
     return (
-      <section className="wrapper main-form">
+      <section className="main-form clearfix">
         <header>
           <img src={OdeLogo} alt="An ode to magnetic fridge poems" className="logo"/>
           <h1>Magnetic Poetry</h1>
         </header>
         <form onSubmit={this.handleSubmit}>
-        <div>
-          <input id="queryInput" onChange={this.handleChange} type="text" name="" value={this.state.queryInput} readOnly={this.state.topicSelected ? true : false} />
+        <div className="search-container">
+        <div className="search-bar">
+            <input id="queryInput" onChange={this.handleChange} type="text" name="" value={this.state.queryInput} readOnly={this.state.topicSelected ? true : false}/>
+            <label htmlFor="queryInput">
+              <h3>Search a topic</h3>
+            </label>
+        </div>
           {this.state.queryInput ?
             <ul>
               {
@@ -207,7 +212,9 @@ class Form extends Component {
               }
             </ul> : null}
         </div>
+        <div className="topic-container">
           <fieldset className="category-options clearfix">
+            <h3>or...</h3>
 
             <input onBlur={this.handleChange} onClick={this.toggleRadio} type="radio" name="category" value="Shakespeare" id="shakespeare" />
             <label htmlFor="shakespeare">
@@ -239,9 +246,12 @@ class Form extends Component {
               <h3>Apocalypse</h3>
               <img src={ApocalypseIcon} alt="Make a poem based on the 'Apocalypse' topic" />
             </label>
-
           </fieldset>
-          <input type="submit" value="Give me Words" id="" />
+
+        </div>
+        <div>
+            <button type="submit">Give me Words</button>
+        </div>
         </form>
       </section>
     )

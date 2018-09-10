@@ -133,7 +133,7 @@ class Fridge extends Component{
           </ul>
         </section>
         <aside className="poem-dashboard">
-          <button className="share-poem show" onClick={this.sharePoem}>Share Poem</button>
+          <button className="share-poem" onClick={this.sharePoem}>Share Poem</button>
           <section className="word-container">
             <ul className="dropzone" id="word-list"
               onDragOver={(e) => this.onDragOver(e)}

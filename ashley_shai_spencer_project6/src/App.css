@@ -129,47 +129,21 @@ legend, button::-moz-focus-inner, input::-moz-focus-inner {
 * {
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
-  box-sizing: border-box; }
+  box-sizing: border-box;
+  font-family: "Cabin", sans-serif; }
 
 .wrapper {
   max-width: 1080px;
   width: 80%;
-  margin: 0 auto; }
+  margin: 0 auto;
+  padding: 2rem; }
 
 .App {
-  height: 100vh;
-  background: #f1f1f1;
-  padding: 2rem;
-  overflow: hidden; }
+  background: #f1f1f1; }
 
 .fridge-container {
   float: left;
   width: 70%; }
-
-.main-form {
-  position: relative; }
-  .main-form fieldset {
-    left: 50%;
-    border: none; }
-  .main-form input[type="radio"]:checked + label {
-    border: 3px solid #FE0046; }
-  .main-form label {
-    float: left;
-    width: calc(20% - 3rem);
-    margin: 1.5rem;
-    padding: 1.5rem .5rem;
-    transition: background .3s;
-    border-radius: 2rem;
-    color: #006750; }
-    .main-form label img {
-      max-width: 40%;
-      min-height: 3rem;
-      min-width: 3rem; }
-    .main-form label h3 {
-      font-size: .8rem;
-      margin-top: 0; }
-    .main-form label:hover {
-      background: #9BE0B6; }
 
 .category-options {
   display: block;
@@ -183,10 +157,24 @@ legend, button::-moz-focus-inner, input::-moz-focus-inner {
   max-height: 80vh;
   text-align: center;
   overflow: scroll; }
-  .poem-dashboard button, .poem-dashboard .show {
+  .poem-dashboard .show {
     background: #f1f1f1; }
   .poem-dashboard ul {
     width: 100%; }
+
+button {
+  position: relative;
+  font-family: "Cabin", sans-serif;
+  font-size: 1.2rem;
+  padding: .5rem;
+  background: #9BE0B6;
+  border: none;
+  color: #006750;
+  z-index: 999;
+  box-shadow: 0px 0px 0 #006750;
+  transition: box-shadow .3s; }
+  button:hover {
+    box-shadow: 5px 5px 0 #006750; }
 
 .fridge-container {
   background: url(./assets/fridge.svg);
@@ -205,8 +193,7 @@ h1 {
   padding: 20px;
   background: white; }
 
-.show,
-button {
+.show {
   background: white;
   cursor: pointer;
   width: auto;
@@ -230,11 +217,58 @@ ul {
   z-index: 10;
   border-radius: 2rem; }
 
-Input[type=radio] {
+.main-form {
+  text-align: center;
+  position: relative; }
+  .main-form h3 {
+    margin: 0; }
+  .main-form fieldset {
+    border: none;
+    padding: 0 5rem; }
+    .main-form fieldset label {
+      text-align: center;
+      display: inline-block;
+      width: calc(20% - 3rem);
+      margin: 1.5rem;
+      padding: 1rem 1rem;
+      transition: background .3s;
+      color: #006750; }
+      .main-form fieldset label img {
+        max-width: 30%;
+        min-height: 3rem; }
+      .main-form fieldset label h3 {
+        font-size: .8rem;
+        margin: .5rem 0; }
+      .main-form fieldset label:hover {
+        background: #9BE0B6; }
+  .main-form input[type="radio"]:checked + label {
+    border: 3px solid #FE0046; }
+
+input[type=radio] {
   display: none; }
 
 label {
-  margin: 10px; }
+  font-family: "Cabin", sans-serif; }
 
-.logo, h1 {
+.logo {
   width: 50vmin; }
+
+.search-bar {
+  position: relative;
+  margin: 4rem 0 2rem; }
+  .search-bar label {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    transform: translateY(-75%);
+    transition: top .3s ease-out, transform .3s ease-out; }
+  .search-bar input {
+    width: 33vmax;
+    padding: .5rem;
+    position: relative;
+    background: transparent;
+    border-radius: 0;
+    border: 3px solid #006750; }
