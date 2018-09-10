@@ -1,16 +1,17 @@
 import React, { Component } from 'react';
-import '../App.css';
-// import { Link } from 'react-router-dom';
-import axios from 'axios';
-import _ from 'underscore';
-import Filter from 'bad-words';
-
 // IMAGES
 import LoveIcon from '../assets/cupid.svg';
 import YogaIcon from '../assets/yoga.svg';
 import ApocalypseIcon from '../assets/apocalypse.svg';
 import AstrologyIcon from '../assets/astrology.svg';
 import ShakespeareIcon from '../assets/shakespeare.svg';
+import OdeLogo from '../assets/odeLogo.svg';
+import '../App.css';
+// import { Link } from 'react-router-dom';
+import axios from 'axios';
+import _ from 'underscore';
+import Filter from 'bad-words';
+
 
 let wordList = []
 
@@ -123,7 +124,7 @@ class Form extends Component {
       })
       //get array of just the words
       verbs.slice(0, 10).map((word) => {
-        wordList.push(word.word)
+        wordList.push(word.word.toLowerCase())
       });
       this.setState({
         wordList,
@@ -146,7 +147,7 @@ class Form extends Component {
     if(this.state.queryInput === "Shakespeare"){
       wordList = ['if', 'the', 'a', 'it', 'ly', 'ing', 'd', 'ed', 'ful', 'y', 'anti', 'un', 're', '!', '?', 'his', 'her']
       this.getWordsQuery('rel_trg', 'thou', 15).then(({data}) => {
-        data.map((word) => wordList.push(word.word))
+        data.map((word) => wordList.push(word.word.toLowerCase()))
         console.log(wordList);
       })
     }
@@ -166,7 +167,7 @@ class Form extends Component {
         
         data.map(({ word }) => {
           
-          wordList.push(word)
+          wordList.push(word.toLowerCase())
         })
       })
       this.getVerbs('ml', this.state.queryInput, '300')
@@ -188,7 +189,10 @@ class Form extends Component {
   render() {
     return (
       <section className="wrapper main-form">
-        <h1>Magnetic Poetry</h1>
+        <header>
+          <img src={OdeLogo} alt="An ode to magnetic fridge poems" className="logo"/>
+          <h1>Magnetic Poetry</h1>
+        </header>
         <form onSubmit={this.handleSubmit}>
         <div>
           <input id="queryInput" onChange={this.handleChange} type="text" name="" value={this.state.queryInput} readOnly={this.state.topicSelected ? true : false} />

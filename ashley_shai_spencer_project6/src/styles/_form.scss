@@ -1,8 +1,7 @@
 form{
-    text-align: center;
+    // text-align: center;
     // display: none;
 }
-
 
 Input[type=radio]{
     display: none;
@@ -10,4 +9,8 @@ Input[type=radio]{
 
 label{
     margin: 10px;
+}
+
+.logo, h1{
+    width: 50vmin;
 }
