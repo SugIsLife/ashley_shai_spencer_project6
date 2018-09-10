@@ -129,8 +129,9 @@ class Form extends Component {
       this.setState({
         wordList,
       }, () => {
-        const shuffledWords = _.shuffle(wordList)
-        this.props.passChildState('wordList', shuffledWords)
+        const shuffledWords = _.shuffle(wordList);
+        const duplicateFree = _.uniq(shuffledWords)
+        this.props.passChildState('wordList', duplicateFree)
         this.props.history.push("/fridge")
       })
       // return verbList.word
