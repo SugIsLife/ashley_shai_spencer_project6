@@ -1,24 +1,54 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import firebase from './firebase';
 
-const Poem = (props) => {
-  console.log(props.selectedWords);
 
+class Poem extends Component {
+  constructor(){
+    super()
+    this.state = {
+      poemArray: [],
+    }
+  }
+
+  componentDidMount = () => {
+    const fullPath = this.props.location.pathname;
+    const poemKey = fullPath.split('/')[2];
+    const dbRef = firebase.database().ref(`/${poemKey}`);
+    dbRef.once('value').then((snapshot) => {
+      console.log('getting snapshot')
+      return (snapshot.val())
+      // return poemArray = snapshot.val();
+    }).then((data)=> {
+      this.setState({
+        poemArray: data,
+      })
+    })
+  }
+
+  makeYourOwn = () => {
+    // this.props.history.push('/').then(window.location.reload());
+    this.props.passChildState('wordList', []);
+    console.log('clicked make your own')
+    this.props.history.push('/');
+    
+  }
+
+  render() {
   return (
     <div>
       <h1>POEM SECTION</h1>
-      <Link to="/" >Back</Link>
+      <button onClick={this.makeYourOwn}>Make Your Own</button>
       <ul>
-        {
-          props.selectedWords.map((word) => {
-            return(
-              <li className="show">{word}</li>
-            )
-          })
-        }
+        {this.state.poemArray.map( (data, i) => {
+          return (
+          <li className="show" key={i}> {data} </li>
+          )}
+        )}
       </ul>
     </div>
   )
+}
 }
 
 export default Poem;
