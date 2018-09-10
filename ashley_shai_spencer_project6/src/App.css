@@ -138,15 +138,38 @@ legend, button::-moz-focus-inner, input::-moz-focus-inner {
 
 .App {
   height: 100vh;
-  background: #006750;
-  padding: 2rem; }
-
-.hide {
-  background: green; }
+  background: #f1f1f1;
+  padding: 2rem;
+  overflow: hidden; }
 
 .fridge-container {
   float: left;
   width: 70%; }
+
+.main-form {
+  position: relative; }
+  .main-form fieldset {
+    left: 50%;
+    border: none; }
+  .main-form input[type="radio"]:checked + label {
+    border: 3px solid #FE0046; }
+  .main-form label {
+    float: left;
+    width: calc(20% - 3rem);
+    margin: 1.5rem;
+    padding: 1.5rem .5rem;
+    transition: background .3s;
+    border-radius: 2rem;
+    color: #006750; }
+    .main-form label img {
+      max-width: 40%;
+      min-height: 3rem;
+      min-width: 3rem; }
+    .main-form label h3 {
+      font-size: .8rem;
+      margin-top: 0; }
+    .main-form label:hover {
+      background: #9BE0B6; }
 
 .category-options {
   display: block;
@@ -154,31 +177,38 @@ legend, button::-moz-focus-inner, input::-moz-focus-inner {
 
 .poem-dashboard {
   float: left;
-  margin-top: 20px;
-  margin-bottom: 0;
-  width: 30%;
-  border-radius: 10%;
-  height: 97vh;
-  text-align: center; }
+  margin: 1rem 0 0 2rem;
+  width: calc(30% - 2rem);
+  border-radius: 2rem;
+  max-height: 80vh;
+  text-align: center;
+  overflow: scroll; }
+  .poem-dashboard button, .poem-dashboard .show {
+    background: #f1f1f1; }
   .poem-dashboard ul {
-    max-height: 50vh;
-    width: 100%;
-    overflow-y: scroll; }
+    width: 100%; }
 
 .fridge-container {
   background: url(./assets/fridge.svg);
   background-size: 180%;
   height: 100vh;
   background-repeat: no-repeat;
-  background-position: top; }
-  .fridge-container h1 {
-    font-family: "Varela Round", sans-serif;
-    text-align: center;
-    font-size: 3rem; }
+  background-position: top;
+  padding: 4rem 10rem; }
+
+h1 {
+  font-family: "Varela Round", sans-serif;
+  text-align: center;
+  font-size: 2rem; }
+
+.poem-dashboard {
+  padding: 20px;
+  background: white; }
 
 .show,
 button {
   background: white;
+  cursor: pointer;
   width: auto;
   float: left;
   margin: 10px;
@@ -190,17 +220,18 @@ button {
   font-family: "Cabin", sans-serif;
   text-transform: capitalize; }
 
-.poem-dashboard {
-  padding: 20px;
-  background: grey; }
-
 ul {
   list-style: none;
   padding: 0; }
 
 .dropzone {
-  min-height: 500px;
-  z-index: 10; }
+  max-height: 100%;
+  height: 1000px;
+  z-index: 10;
+  border-radius: 2rem; }
+
+.swal-button {
+  background: #FE0046; }
 
 form {
   text-align: center; }
