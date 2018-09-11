@@ -240,7 +240,7 @@ class Fridge extends Component{
             </div>
           </DragDropContext>
         </div>
-      </section>
+      </section>      
     )
   }
 }

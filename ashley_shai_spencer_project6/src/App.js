@@ -55,6 +55,15 @@ class App extends Component {
               />
             </main>
           </div>
+          <footer>
+              Made by 
+              <a href="http://www.ashleyhellyer.com"> Ashley </a>
+               & 
+               <a href="http://www.shaikirmanicodes.com"> Shai </a>
+                & 
+               <a href="http://www.spen.io"> Spencer </a>
+                2018 &copy;
+            </footer>
         </div>
       </Router>
     );
