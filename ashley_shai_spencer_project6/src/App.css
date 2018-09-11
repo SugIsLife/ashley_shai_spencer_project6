@@ -165,7 +165,7 @@ legend, button::-moz-focus-inner, input::-moz-focus-inner {
   .poem-dashboard ul {
     width: 100%; }
 
-button, a.button {
+button, a.home-link {
   position: relative;
   font-family: "Cabin", sans-serif;
   font-size: 1rem;
@@ -177,10 +177,10 @@ button, a.button {
   z-index: 999;
   box-shadow: 0px 0px 0 #006750;
   transition: box-shadow .3s; }
-  button:hover, a.button:hover {
+  button:hover, a.home-link:hover {
     box-shadow: 5px 5px 0 #006750;
     transition: box-shadow .2s ease-in-out; }
-  button:active, a.button:active {
+  button:active, a.home-link:active {
     box-shadow: 5px 5px 15px #006750; }
 
 .poem-page {
@@ -200,6 +200,55 @@ button, a.button {
 
 .row {
   width: 100%; }
+
+.fridge-header, .poem-header {
+  height: 15vh;
+  width: 100%; }
+
+.fridge-logo {
+  width: 70%;
+  float: left;
+  text-align: left;
+  margin-top: 0;
+  height: 50px; }
+
+.fridge-logo img, .poem-logo img {
+  height: 50px;
+  width: auto; }
+
+.fridge-nav {
+  width: 30%;
+  float: left; }
+
+.share-poem, a.home-link, .make-own {
+  display: block;
+  margin: 5px;
+  margin-top: 0;
+  width: calc(50% - 10px);
+  text-align: center;
+  text-decoration: none;
+  float: left;
+  padding: 15px 0;
+  height: 50px;
+  color: black; }
+
+.make-own {
+  width: 100%;
+  float: none; }
+
+.swal-text {
+  text-align: center; }
+
+.poem-logo {
+  width: 80%;
+  float: left;
+  text-align: left;
+  margin: 0;
+  height: 50px; }
+
+.poem-nav {
+  width: 20%;
+  float: left; }
 
 .fridge-container {
   background: url(./assets/fridge.svg);
@@ -250,6 +299,12 @@ ul {
 
 .swal-button {
   background: #FE0046; }
+
+a {
+  text-decoration: none;
+  color: #f1f1f1; }
+  a:hover {
+    color: #FE0046; }
 
 .main-form {
   text-align: center;
@@ -318,6 +373,17 @@ label {
 .topic-container, .search-container {
   position: relative; }
 
+footer {
+  height: auto;
+  background: #006750;
+  padding: 15px;
+  padding-bottom: 28px;
+  text-align: right;
+  float: left;
+  width: 100%;
+  margin-top: 50px;
+  color: #f1f1f1; }
+
 /* Portrait tablet and small desktops */
 @media (max-width: 940px) {
   .wrapper {
@@ -351,8 +417,13 @@ label {
     height: 8rem;
     width: 100%;
     margin: 0; }
+<<<<<<< HEAD
   .poem-page .fridge-container {
     width: 100% !important; } }
+=======
+  footer {
+    margin-top: 80px; } }
+>>>>>>> 173679f063d34cfac219e51d2052a3519bd8bd90
 
 /* Landscape phones and down */
 @media (max-width: 480px) {

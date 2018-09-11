@@ -6,6 +6,66 @@
     width: 100%;
 }
 
+.fridge-header, .poem-header {
+    height: 15vh;
+    width: 100%;
+}
+
+.fridge-logo {
+    width: 70%;
+    float: left;    
+    text-align: left;
+    margin-top: 0;
+    height: 50px;
+}
+
+.fridge-logo img, .poem-logo img {
+    height: 50px;
+    width: auto;
+}
+
+.fridge-nav {
+    width: 30%;
+    float: left;
+}
+
+.share-poem, a.home-link, .make-own{
+    display: block;
+    margin: 5px;
+    margin-top: 0;
+    width: calc(50% - 10px);
+    text-align: center;
+    text-decoration: none;
+    float: left;
+    padding: 15px 0;
+    height: 50px;
+    color: black;
+}
+
+.make-own {
+    width: 100%;
+    float: none;
+}
+
+.swal-text {
+    text-align: center;
+}
+
+.poem-logo {
+    width: 80%;
+    float: left;    
+    text-align: left;
+    margin: 0;
+    height: 50px;
+}
+
+.poem-nav {
+    width: 20%;
+    float: left;
+}
+
+
+
 .fridge-container{
     background: url(./assets/fridge.svg);
     background-size: 100%;
@@ -23,13 +83,15 @@ h1{
     // font-size: 1.4rem;
     // font-weight: 700;
 }
+
+//word optons section
 .poem-dashboard{
     padding: 20px;
     background: white;
     max-width: 100%;
 }
 
-
+//list item styles
 .show{
     position: relative;
     background: white;
@@ -64,25 +126,13 @@ ul{
     background: #FE0046;
 }
 
-.dropzone {
-    // max-height: 100vh;
-    // height: 100%;
-    // z-index: 10;
-    // border-radius: 2rem;
-    // background-color: $green;
-    // mix-blend-mode: multiply;
+
+
+
+a{
+    text-decoration: none;
+    color:$light;
+    &:hover{
+        color: $red;
+    }
 }
-
-// #word-list {
-//     width: 500px;
-//     height: 500px;
-//     float: left;
-// }
-
-// #fridge-words {
-//     width: 500px;
-//     height: 500px;
-//     float: left;
-// }
-
-
