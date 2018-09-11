@@ -4,6 +4,7 @@
 
 .row{
     width: 100%;
+    display: block;
 }
 
 .fridge-header, .poem-header {
@@ -74,7 +75,7 @@
     background-size: 100%;
     background-repeat: no-repeat;
     background-position: top;
-    padding: 4rem 10rem;
+    padding: 4rem 6rem;
     height: 100vh;
     float: left;
     width: 70%;

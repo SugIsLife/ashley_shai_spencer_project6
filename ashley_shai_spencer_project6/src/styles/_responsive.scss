@@ -11,7 +11,11 @@
         }
     }
     .fridge-container{
+        width: 60%;
         padding: 4rem 6rem;
+    }
+    .poem-dashboard{
+      width: 33%;
     }
     .poem-page{
         .fridge-container{
@@ -32,12 +36,12 @@
 /* Landscape phone to portrait tablet */
 @media (max-width: 768px) {
     .wrapper{
-        width: 100%;
+        width: 90%;
     }
     .main-form{
         .search-bar{
-            padding:  0 25vmin;
             transition: padding .2s;
+            margin-bottom: 2rem;
         }
         fieldset{
             label{
@@ -45,30 +49,48 @@
             }
         }
     }
+    .search-container{
+      padding: 0;
+    }
     .fridge .fridge-container{
-        @include position(absolute,40%,0,0,50%);
-        transform: translateX(-50%);
-        width: 85%;
+        // @include position(absolute,40%,0,0,50%);
+        // transform: translateX(-50%);
+        width: 100%;
+        float: none;
+        clear: both;
+        margin: auto 0;
         padding: 4rem 6rem;
+    }
+    .fridge-logo, .fridge-nav, .poem-logo, .poem-nav{
+        width: 50%;
     }
     .poem-dashboard{
         height: 8rem;
         width: 100%;
-        margin: 0;
+        margin: 0 0 2rem;
+        float: left;
+        border: 2px solid silver;
+        padding-top: 0;
+        p{
+            margin: .25rem 0;
+        }
     }
     .poem-page{
         .fridge-container{
             width: 90%;
         }
+        header{
+          p{
+            display: none;
+          }
+        }
     }
-
-    // footer{
-    //     margin-top: 80px;
-    // }
 }
 /* Landscape phones and down */
 @media (max-width: 480px) {
-
+    .wrapper{
+        width: 95%;
+    }
     .main-form{
         .search-bar{
             padding:  0 5%;
@@ -102,13 +124,38 @@
     .main-section {
         height: auto;
     }
-    .fridge-container{
-        @include position(absolute,45%,0,0,50%);
-        transform: translateX(-50%);
-        padding: 4rem 2rem;
+    .search-container{
+      button, input{
+        display: block;
+        width: 100%;
+      }
+      button{
+        margin-left: 0;
+        margin-top: 1rem;
+      }
+    }
+    .fridge .fridge-container{
+        padding: 1rem 1rem 1rem 4rem;
     }
     .poem-dashboard{
         height: 8.5rem;
+        margin-top: 2rem;
         // width: 95%;
+    }
+    .poem-page{
+        .fridge-container{
+            width: 100%;
+            padding: 1rem 1rem 1rem 4rem;
+        }
+    }
+    .fridge-logo, .fridge-nav{
+        width: 100%;
+        display: block;
+    }
+    .poem-nav{
+      // margin: .5rem 0;
+      // display: inline-block;
+      width: 40%;
+      margin-left: 1.5rem;
     }
 }
