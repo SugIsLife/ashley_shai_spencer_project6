@@ -8,12 +8,14 @@
 
 .fridge-container{
     background: url(./assets/fridge.svg);
-    background-size: 180%;
-    // height: 100vh;
+    background-size: 100%;
     background-repeat: no-repeat;
     background-position: top;
     padding: 4rem 10rem;
-    overflow: hidden;
+    height: 100vh;
+    float: left;
+    width: 70%;
+    border-radius: 1rem;
 }
 h1{
     font-family: $headerfont;

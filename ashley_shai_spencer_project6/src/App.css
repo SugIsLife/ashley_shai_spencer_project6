@@ -148,13 +148,6 @@ legend, button::-moz-focus-inner, input::-moz-focus-inner {
 .fridge {
   max-height: 100vh; }
 
-.fridge-container {
-  height: 100vh;
-  float: left;
-  width: 70%;
-  background: src("../assets/fridge.svg") center no-repeat;
-  background-size: cover; }
-
 .category-options {
   display: block;
   width: 100%; }
@@ -163,7 +156,6 @@ legend, button::-moz-focus-inner, input::-moz-focus-inner {
   float: left;
   margin: 1rem 0 0 2rem;
   width: calc(30% - 2rem);
-  border-radius: 2rem;
   height: 80vmax;
   max-height: 80vh;
   text-align: center;
@@ -195,7 +187,13 @@ button, a.button {
   position: relative;
   width: 100%; }
   .poem-page .fridge-container {
-    width: 100%; }
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60vmax !important; }
 
 .inline-block {
   display: inline-block; }
@@ -205,11 +203,14 @@ button, a.button {
 
 .fridge-container {
   background: url(./assets/fridge.svg);
-  background-size: 180%;
+  background-size: 100%;
   background-repeat: no-repeat;
   background-position: top;
   padding: 4rem 10rem;
-  overflow: hidden; }
+  height: 100vh;
+  float: left;
+  width: 70%;
+  border-radius: 1rem; }
 
 h1 {
   font-family: "Varela Round", sans-serif;
@@ -266,15 +267,15 @@ ul {
   .main-form h3 {
     margin: .25rem 0; }
   .main-form fieldset {
-    border: none;
-    padding: 0 5vmin; }
+    border: none; }
     .main-form fieldset label {
       text-align: center;
       display: inline-block;
-      width: calc(33%);
-      margin: .5rem 0;
-      padding: .5rem 1rem;
+      min-height: 5rem;
+      width: 12%;
+      padding: .5rem;
       transition: background .3s;
+      transition: width .2s;
       color: #006750; }
       .main-form fieldset label:hover {
         background: #9BE0B6; }
@@ -284,7 +285,7 @@ ul {
       font-size: .8rem;
       margin: .5rem 0; }
   .main-form input[type="radio"]:checked + label {
-    border: 3px solid #FE0046; }
+    border: 3px solid black; }
 
 input[type=radio] {
   display: none; }
@@ -297,7 +298,7 @@ label {
 
 .search-bar {
   padding: 0 25vmax;
-  margin: 4rem 0 0; }
+  margin: 2.5rem 0 0; }
   .search-bar label {
     position: relative;
     top: -100%;
@@ -320,7 +321,13 @@ label {
 /* Portrait tablet and small desktops */
 @media (max-width: 940px) {
   .wrapper {
-    width: 95%; } }
+    width: 95%; }
+  .main-form fieldset label {
+    width: 15%; }
+  .fridge-container {
+    padding: 4rem 6rem; }
+  .poem-page .fridge-container {
+    width: 85% !important; } }
 
 /* Landscape phone to portrait tablet */
 @media (max-width: 768px) {
@@ -329,6 +336,8 @@ label {
   .main-form .search-bar {
     padding: 0 25vmin;
     transition: padding .2s; }
+  .main-form fieldset label {
+    width: 20%; }
   .fridge-container {
     position: absolute;
     top: 40%;
@@ -341,14 +350,26 @@ label {
   .poem-dashboard {
     height: 8rem;
     width: 100%;
-    margin: 0; } }
+    margin: 0; }
+  .poem-page .fridge-container {
+    width: 100% !important; } }
 
 /* Landscape phones and down */
 @media (max-width: 480px) {
   .main-form .search-bar {
     padding: 0 5%; }
   .main-form fieldset label {
+    position: relative;
     width: 100%; }
+    .main-form fieldset label h3, .main-form fieldset label img {
+      float: left; }
+    .main-form fieldset label h3 {
+      position: absolute;
+      top: 50%;
+      bottom: 0;
+      left: 25%;
+      transform: translateY(-50%);
+      font-size: 1rem; }
   .main-form fieldset img {
     width: 5vmax;
     margin: 0.5rem 0; }

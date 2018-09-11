@@ -39,7 +39,7 @@ const getItemStyle = (isDragging, draggableStyle) => ({
   color: isDragging ? '#00000aa' : 'black',
   // change background colour if dragging
   background: isDragging ? '#f1f1f175' : '#f1f1f1',
-  "box-shadow": isDragging ? "2px 5px 5px #555" : "2px 5px",
+  boxShadow: isDragging ? "2px 5px 5px #555" : "2px 5px",
   transition: "border .3s ease-in-out",
 
   // styles we need to apply on draggables

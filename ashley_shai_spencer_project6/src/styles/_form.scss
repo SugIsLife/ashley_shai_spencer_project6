@@ -20,16 +20,16 @@
     }
     fieldset{
         border: none;
-        padding: 0 5vmin;
+        // padding: 0 30vmin;
         label{
             text-align: center;
             display: inline-block;
-            // float: left;
-            width: calc(33%);
-            margin: .5rem 0;
-            padding: .5rem 1rem;
+            min-height: 5rem;
+            width: 12%;
+            // margin: .5rem 0;
+            padding: .5rem;
             transition: background .3s;
-            // border-radius: 2rem;
+            transition: width .2s;
             color: $green;
             &:hover{
                 background: $mint;
@@ -46,7 +46,7 @@
     }
     input[type="radio"]:checked{
         +label{
-            border: 3px solid $red;
+            border: 3px solid black;
         }
     }
 }
@@ -67,7 +67,7 @@ label{
     // width: 50%;
     padding: 0 25vmax;
     // @include position(absolute, 50%,0,0,0);
-    margin: 4rem 0 0;
+    margin: 2.5rem 0 0;
     label{
         @include position(relative,-100%,0,0,0);
         width: 100%;
@@ -81,12 +81,6 @@ label{
         border-radius: 0;
         border: 3px solid $green;
     }
-    // input:hover, input:focus{
-    //     + label{
-    //         top: 0;
-    //         transform: translateY(-60%);
-    //     }
-    // }
 }
 
 .topic-container, .search-container{
