@@ -202,6 +202,7 @@ class Form extends Component {
               <h3>Search a topic</h3>
             </label>
         </div>
+        <h3 className="inline-block">or...</h3>
           {this.state.queryInput ?
             <ul>
               {
@@ -215,7 +216,6 @@ class Form extends Component {
         </div>
         <div className="topic-container">
           <fieldset className="category-options clearfix">
-            <h3>or...</h3>
 
             <input onBlur={this.handleChange} onClick={this.toggleRadio} type="radio" name="category" value="Shakespeare" id="shakespeare" />
             <label htmlFor="shakespeare">

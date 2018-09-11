@@ -33,20 +33,29 @@ const move = (source, destination, droppableSource, droppableDestination) => {
 const getItemStyle = (isDragging, draggableStyle) => ({
   // some basic styles to make the items look a bit nicer
   userSelect: 'none',
-  padding: `5px`,
-  margin: `2px`,
-
+  color: isDragging ? '#00000aa' : 'black',
   // change background colour if dragging
-  background: isDragging ? 'lightgreen' : '#f1f1f1',
+  background: isDragging ? '#f1f1f175' : '#f1f1f1',
+  "box-shadow": isDragging ? "2px 5px 5px #555" : "2px 5px",
+  transition: "border .3s ease-in-out",
 
   // styles we need to apply on draggables
   ...draggableStyle
 });
 
 const getListStyle = isDraggingOver => ({
-  background: isDraggingOver ? 'lightblue' : 'lightgrey',
-  padding: `2px`,
-  width: 250
+  background: isDraggingOver ? '#00675033' : '#f1f1f100',
+  transition: "background .3s ease-in-out",
+  height: '100%',
+  // padding: `2px`,
+  // width: 250,
+  // background: `url(../assets/fridge.svg)`,
+  // 'background-size': `180%`,
+  // height: `100vh`,
+  // 'background-repeat':` no-repeat`,
+  // 'background-position': `top`,
+  // padding: `4rem 10rem`,
+  border: 'none',
 });
 
 
@@ -55,7 +64,7 @@ class Fridge extends Component{
     super(props);
     this.state = {
       wordList: this.props.wordList,
-      selectedWords: ['placeholder'],
+      selectedWords: [],
     }
   }
 
@@ -138,84 +147,96 @@ class Fridge extends Component{
 
   }
   
-
   // resetPage = () => {
   //   window.location.reload();
   // }
 
   render() {
     return (
-      <div className="clearfix">
-        <h1>Le fridge</h1>
-        <button className="share-poem show" onClick={this.sharePoem}>Share Poem</button>
-        <DragDropContext onDragEnd={this.onDragEnd}>
-          <Droppable droppableId="droppable">
-            {(provided, snapshot) => (
-              <ul 
-                id="fridge-words" 
-                ref={provided.innerRef}
-                style={getListStyle(snapshot.isDraggingOver)}>
-                  {
-                  
-                  this.state.selectedWords.map((item, index) => (
-                  
-                    <Draggable
-                      key={item}
-                      draggableId={item}
-                      index={index}>
-                      {(provided, snapshot) => (
-                        <li 
-                          ref={provided.innerRef}
-                          {...provided.draggableProps}
-                          {...provided.dragHandleProps}
-                          style={getItemStyle(
-                            snapshot.isDragging,
-                            provided.draggableProps.style
-                          )}
-                          className="show">
-                          {item}
-                        </li>
-                      )}
-                    </Draggable>
-                  ))}
-                  {provided.placeholder}
-                </ul>
-              )}
-            </Droppable>
-            <Droppable droppableId="droppable2">
-              {(provided, snapshot) => (
-                <ul
-                  id="word-list"
-                  ref={provided.innerRef}
-                  style={getListStyle(snapshot.isDraggingOver)}>
-                  {
+      <section className="fridge">
+        <div className="clearfix">
+          <div className="row">
+            <h1>Le fridge</h1>
+          </div>
+          <DragDropContext onDragEnd={this.onDragEnd}>
+            <div className="fridge-container" >
+              <Droppable droppableId="droppable">
+                {(provided, snapshot) => (
+                  <ul
+                    id="fridge-words"
+                    ref={provided.innerRef}
+                    style={getListStyle(snapshot.isDraggingOver)}>
+                    {
 
-                    this.state.wordList.map((item, index) => (
-                      <Draggable
-                        key={item}
-                        draggableId={item}
-                        index={index}>
-                        {(provided, snapshot) => (
-                          <li
-                            ref={provided.innerRef}
-                            {...provided.draggableProps}
-                            {...provided.dragHandleProps}
-                            style={getItemStyle(
-                              snapshot.isDragging,
-                              provided.draggableProps.style
-                            )}
-                            className="show">
-                            {item}
-                          </li>
-                        )}
-                      </Draggable>
-                    ))}
-                  {provided.placeholder}
-                </ul>
-              )}
-            </Droppable>
-        </DragDropContext>
-      </div>
+                      this.state.selectedWords.map((item, index) => (
+
+                        <Draggable
+                          key={item}
+                          draggableId={item}
+                          index={index}>
+                          {(provided, snapshot) => (
+                            <li
+                              ref={provided.innerRef}
+                              {...provided.draggableProps}
+                              {...provided.dragHandleProps}
+                              style={getItemStyle(
+                                snapshot.isDragging,
+                                provided.draggableProps.style
+                              )}
+                              className="show">
+                              {item}
+                            </li>
+                          )}
+                        </Draggable>
+                      ))}
+                    {provided.placeholder}
+                  </ul>
+                )}
+              </Droppable>
+            </div>
+            <div className="poem-dashboard">
+              <div className="row">
+                <button onClick={this.sharePoem}>Share Poem</button>
+              </div>
+              <div className="row">
+                <Link to="/" className="button">Home</ Link>
+              </div>
+              <Droppable droppableId="droppable2">
+                {(provided, snapshot) => (
+                  <ul
+                    id="word-list"
+                    ref={provided.innerRef}
+                    style={getListStyle(snapshot.isDraggingOver)}>
+                    {
+
+                      this.state.wordList.map((item, index) => (
+                        <Draggable
+                          key={item}
+                          draggableId={item}
+                          index={index}>
+                          {(provided, snapshot) => (
+                            <li
+                              ref={provided.innerRef}
+                              {...provided.draggableProps}
+                              {...provided.dragHandleProps}
+                              style={getItemStyle(
+                                snapshot.isDragging,
+                                provided.draggableProps.style
+                              )}
+                              className="show">
+                              {item}
+                            </li>
+                          )}
+                        </Draggable>
+                      ))}
+                    {provided.placeholder}
+                  </ul>
+                )}
+              </Droppable>
+            </div>
+          </DragDropContext>
+        </div>
+      </section>
     )
   }
 }

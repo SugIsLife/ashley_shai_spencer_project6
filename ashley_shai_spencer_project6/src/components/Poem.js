@@ -36,17 +36,19 @@ class Poem extends Component {
 
   render() {
   return (
-    <div>
-      <h1>POEM SECTION</h1>
-      <button onClick={this.makeYourOwn}>Make Your Own</button>
-      <ul>
-        {this.state.poemArray.map( (data, i) => {
-          return (
-          <li className="show" key={i}> {data} </li>
+    <section className="poem-page">
+      <div className="fridge-container">
+        <h1>POEM SECTION</h1>
+        <button onClick={this.makeYourOwn}>Make Your Own</button>
+        <ul>
+          {this.state.poemArray.map( (data, i) => {
+            return (
+            <li className="show" key={i}> {data} </li>
+            )}
           )}
-        )}
-      </ul>
-    </div>
+        </ul>
+      </div>
+    </section>
   )
 }
 }

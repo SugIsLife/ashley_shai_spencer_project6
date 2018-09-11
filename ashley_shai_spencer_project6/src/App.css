@@ -136,14 +136,24 @@ legend, button::-moz-focus-inner, input::-moz-focus-inner {
   max-width: 1080px;
   width: 80%;
   margin: 0 auto;
-  padding: 2rem; }
+  padding: 2rem 2rem 0;
+  transition: width .2s; }
 
 .App {
-  background: #f1f1f1; }
+  height: 100vh;
+  max-height: 100vh;
+  background: #f1f1f1;
+  overflow-y: scroll; }
+
+.fridge {
+  max-height: 100vh; }
 
 .fridge-container {
+  height: 100vh;
   float: left;
-  width: 70%; }
+  width: 70%;
+  background: src("../assets/fridge.svg") center no-repeat;
+  background-size: cover; }
 
 .category-options {
   display: block;
@@ -154,46 +164,64 @@ legend, button::-moz-focus-inner, input::-moz-focus-inner {
   margin: 1rem 0 0 2rem;
   width: calc(30% - 2rem);
   border-radius: 2rem;
+  height: 80vmax;
   max-height: 80vh;
   text-align: center;
-  overflow: scroll; }
+  overflow-y: scroll; }
   .poem-dashboard .show {
     background: #f1f1f1; }
   .poem-dashboard ul {
     width: 100%; }
 
-button {
+button, a.button {
   position: relative;
   font-family: "Cabin", sans-serif;
-  font-size: 1.2rem;
+  font-size: 1rem;
   padding: .5rem;
+  margin: 1rem 0;
   background: #9BE0B6;
   border: none;
   color: #006750;
   z-index: 999;
   box-shadow: 0px 0px 0 #006750;
   transition: box-shadow .3s; }
-  button:hover {
-    box-shadow: 5px 5px 0 #006750; }
+  button:hover, a.button:hover {
+    box-shadow: 5px 5px 0 #006750;
+    transition: box-shadow .2s ease-in-out; }
+  button:active, a.button:active {
+    box-shadow: 5px 5px 15px #006750; }
+
+.poem-page {
+  position: relative;
+  width: 100%; }
+  .poem-page .fridge-container {
+    width: 100%; }
+
+.inline-block {
+  display: inline-block; }
+
+.row {
+  width: 100%; }
 
 .fridge-container {
   background: url(./assets/fridge.svg);
   background-size: 180%;
-  height: 100vh;
   background-repeat: no-repeat;
   background-position: top;
-  padding: 4rem 10rem; }
+  padding: 4rem 10rem;
+  overflow: hidden; }
 
 h1 {
   font-family: "Varela Round", sans-serif;
-  text-align: center;
-  font-size: 2rem; }
+  text-align: center; }
 
 .poem-dashboard {
   padding: 20px;
-  background: white; }
+  background: white;
+  max-width: 100%; }
 
 .show {
+  position: relative;
   background: white;
   cursor: pointer;
   width: auto;
@@ -203,62 +231,59 @@ h1 {
   margin: 5px;
   padding: 10px;
   list-style: none;
-  box-shadow: 2px 5px;
-  font-family: "Cabin", sans-serif; }
+  box-shadow: 2px 5px 0px black;
+  left: 0;
+  top: 0;
+  font-family: "Cabin", sans-serif;
+  transition: box-shadow .4s, top .3s ease-out, left .3s ease-out; }
+  .show:hover {
+    box-shadow: 5px 7px 7px #555;
+    top: -2px;
+    left: -2px; }
 
 ul {
   list-style: none;
   padding: 0;
-  border: 1px solid grey; }
+  border: 1px solid grey;
+  height: 100%; }
 
-.dropzone {
-  max-height: 100vh;
-  height: 100%;
-  z-index: 10;
-  border-radius: 2rem; }
-
-<<<<<<< HEAD
 .main-form {
   text-align: center;
   position: relative; }
+  .main-form:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-size: cover; }
+  .main-form h1 {
+    font-size: 1rem; }
   .main-form h3 {
-    margin: 0; }
+    margin: .25rem 0; }
   .main-form fieldset {
     border: none;
-    padding: 0 5rem; }
+    padding: 0 5vmin; }
     .main-form fieldset label {
       text-align: center;
       display: inline-block;
-      width: calc(20% - 3rem);
-      margin: 1.5rem;
-      padding: 1rem 1rem;
+      width: calc(33%);
+      margin: .5rem 0;
+      padding: .5rem 1rem;
       transition: background .3s;
       color: #006750; }
-      .main-form fieldset label img {
-        max-width: 30%;
-        min-height: 3rem; }
-      .main-form fieldset label h3 {
-        font-size: .8rem;
-        margin: .5rem 0; }
       .main-form fieldset label:hover {
         background: #9BE0B6; }
+    .main-form fieldset img {
+      width: 3vmax; }
+    .main-form fieldset h3 {
+      font-size: .8rem;
+      margin: .5rem 0; }
   .main-form input[type="radio"]:checked + label {
     border: 3px solid #FE0046; }
 
 input[type=radio] {
-=======
-#word-list {
-  width: 500px;
-  height: 500px;
-  float: left; }
-
-#fridge-words {
-  width: 500px;
-  height: 500px;
-  float: left; }
-
-Input[type=radio] {
->>>>>>> bf1e97f39ca59e32e845c3fd2b960cb7f1653e3d
   display: none; }
 
 label {
@@ -268,21 +293,69 @@ label {
   width: 50vmin; }
 
 .search-bar {
-  position: relative;
-  margin: 4rem 0 2rem; }
+  padding: 0 25vmax;
+  margin: 4rem 0 0; }
   .search-bar label {
-    position: absolute;
-    top: 0;
+    position: relative;
+    top: -100%;
     right: 0;
     bottom: 0;
     left: 0;
     width: 100%;
-    transform: translateY(-75%);
     transition: top .3s ease-out, transform .3s ease-out; }
   .search-bar input {
-    width: 33vmax;
+    width: 100%;
     padding: .5rem;
     position: relative;
     background: transparent;
     border-radius: 0;
     border: 3px solid #006750; }
+
+.topic-container, .search-container {
+  position: relative; }
+
+/* Portrait tablet and small desktops */
+@media (max-width: 940px) {
+  .wrapper {
+    width: 95%; } }
+
+/* Landscape phone to portrait tablet */
+@media (max-width: 768px) {
+  .wrapper {
+    width: 100%; }
+  .main-form .search-bar {
+    padding: 0 25vmin;
+    transition: padding .2s; }
+  .fridge-container {
+    position: absolute;
+    top: 40%;
+    right: 0;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 85%;
+    padding: 4rem 6rem; }
+  .poem-dashboard {
+    height: 8rem;
+    width: 100%;
+    margin: 0; } }
+
+/* Landscape phones and down */
+@media (max-width: 480px) {
+  .main-form .search-bar {
+    padding: 0 5%; }
+  .main-form fieldset label {
+    width: 100%; }
+  .main-form fieldset img {
+    width: 5vmax;
+    margin: 0.5rem 0; }
+  .fridge-container {
+    position: absolute;
+    top: 45%;
+    right: 0;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 4rem 2rem; }
+  .poem-dashboard {
+    height: 8.5rem; } }

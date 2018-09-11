@@ -1,24 +1,35 @@
+.inline-block{
+    display: inline-block;
+}
+
+.row{
+    width: 100%;
+}
+
 .fridge-container{
     background: url(./assets/fridge.svg);
     background-size: 180%;
-    height: 100vh;
+    // height: 100vh;
     background-repeat: no-repeat;
     background-position: top;
     padding: 4rem 10rem;
+    overflow: hidden;
 }
 h1{
     font-family: $headerfont;
     text-align: center;
-    font-size: 2rem;
+    // font-size: 1.4rem;
     // font-weight: 700;
 }
 .poem-dashboard{
     padding: 20px;
     background: white;
+    max-width: 100%;
 }
 
 
 .show{
+    position: relative;
     background: white;
     cursor: pointer;
     width: auto;
@@ -28,35 +39,44 @@ h1{
     margin: 5px;
     padding: 10px;
     list-style: none;
-    box-shadow: 2px 5px;
+    box-shadow: 2px 5px 0px black;
+    left: 0;
+    top: 0;
     font-family: $basefont;
+    transition: box-shadow .4s, top .3s ease-out, left .3s ease-out;
+    &:hover{
+        box-shadow: 5px 7px 7px #555;
+        top: -2px;
+        left: -2px;
+    }
 }
 
 ul{
     list-style: none;
     padding: 0;
     border: 1px solid grey;
+    height: 100%;
 }
 
 .dropzone {
-    max-height: 100vh;
-    height: 100%;
-    z-index: 10;
-    border-radius: 2rem;
+    // max-height: 100vh;
+    // height: 100%;
+    // z-index: 10;
+    // border-radius: 2rem;
     // background-color: $green;
     // mix-blend-mode: multiply;
 }
 
-#word-list {
-    width: 500px;
-    height: 500px;
-    float: left;
-}
+// #word-list {
+//     width: 500px;
+//     height: 500px;
+//     float: left;
+// }
 
-#fridge-words {
-    width: 500px;
-    height: 500px;
-    float: left;
-}
+// #fridge-words {
+//     width: 500px;
+//     height: 500px;
+//     float: left;
+// }
 
 

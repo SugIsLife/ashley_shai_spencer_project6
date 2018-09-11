@@ -1,0 +1,56 @@
+/* Portrait tablet and small desktops */
+@media (max-width: 940px) {
+    .wrapper{
+        width: 95%;
+    }
+}
+/* Landscape phone to portrait tablet */
+@media (max-width: 768px) {
+    .wrapper{
+        width: 100%;
+    }
+    .main-form{
+        .search-bar{
+            padding:  0 25vmin;
+            transition: padding .2s;
+        }
+    }
+    .fridge-container{
+        @include position(absolute,40%,0,0,50%);
+        transform: translateX(-50%);
+        width: 85%;
+        padding: 4rem 6rem;
+    }
+    .poem-dashboard{
+        height: 8rem;
+        width: 100%;
+        margin: 0;
+    }
+}
+/* Landscape phones and down */
+@media (max-width: 480px) {
+
+    .main-form{
+        .search-bar{
+            padding:  0 5%;
+        }
+        fieldset{
+            label{
+                width: 100%;
+            }
+            img{
+                width: 5vmax;
+                margin: 0.5rem 0;
+            }
+        }
+    }
+    .fridge-container{
+        @include position(absolute,45%,0,0,50%);
+        transform: translateX(-50%);
+        padding: 4rem 2rem;
+    }
+    .poem-dashboard{
+        height: 8.5rem;
+        // width: 95%;
+    }
+}
