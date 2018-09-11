@@ -1,22 +1,29 @@
-@import './vars';
+// @import './vars';
 .wrapper{
     max-width: 1080px;
     width: 80%;
     margin: 0 auto;
-    padding: 2rem;
+    padding: 2rem 2rem 0;
+    transition: width .2s;
 }
 
 .App{
-    // height: 100vh;
+    height: 100vh;
+    max-height: 100vh;
     background: $light;
     // padding: 2rem;
-    // overflow: hidden;
+    overflow-y: scroll;
 }
-
+.fridge{
+    max-height: 100vh;
+}
 .fridge-container{
+    height: 100vh;
+    // @include position(absolute,50%,0,0,0);
     float: left;
     width: 70%;
-    
+    background: src('../assets/fridge.svg') center no-repeat;
+    background-size: cover;
 }
 
 .category-options{
@@ -29,9 +36,10 @@
     margin: 1rem 0 0 2rem; 
     width: calc(30% - 2rem);
     border-radius: 2rem;
+    height: 80vmax;
     max-height: 80vh;
     text-align: center;
-    overflow: scroll;
+    overflow-y: scroll;
     .show{
         background: $light;
     }
@@ -40,11 +48,12 @@
     }
 }
 
-button{
+button, a.button{
     position: relative;
     font-family: $basefont;
-    font-size: 1.2rem;
+    font-size: 1rem;
     padding: .5rem;
+    margin: 1rem 0;
     background: $mint;
     border: none;
     color: $green;
@@ -53,5 +62,17 @@ button{
     transition: box-shadow .3s;
     &:hover{
         box-shadow: 5px 5px 0 $green;
+        transition: box-shadow .2s ease-in-out;
+    }
+    &:active{
+        box-shadow: 5px 5px 15px $green;
+    }
+}
+
+.poem-page{
+    position: relative;
+    width: 100%;
+    .fridge-container{
+        width: 100%;
     }
 }
