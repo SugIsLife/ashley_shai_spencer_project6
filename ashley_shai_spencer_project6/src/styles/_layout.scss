@@ -30,8 +30,7 @@
     float: left;
     margin: 1rem 0 0 2rem; 
     width: calc(30% - 2rem);
-    height: 80vmax;
-    max-height: 80vh;
+    height: 95vmin;
     text-align: center;
     overflow-y: scroll;
     .show{
@@ -67,8 +66,12 @@ button, a.home-link{
     position: relative;
     width: 100%;
     .fridge-container{
-        @include position(absolute,0,0,0,50%);
-        transform: translateX(-50%);
-        width: 60vmax !important;
+        // @include position(absolute,0,0,0,50%);
+        // transform: translateX(50%);
+        margin: 0 auto;
+        display: block;
+        float: none;
+        width: 85%;
+        // width: 60vmax;
     }
 }

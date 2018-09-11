@@ -49,14 +49,6 @@ const getListStyle = isDraggingOver => ({
   background: isDraggingOver ? '#00675033' : '#f1f1f100',
   transition: "background .3s ease-in-out",
   height: '100%',
-  // padding: `2px`,
-  // width: 250,
-  // background: `url(../assets/fridge.svg)`,
-  // 'background-size': `180%`,
-  // height: `100vh`,
-  // 'background-repeat':` no-repeat`,
-  // 'background-position': `top`,
-  // padding: `4rem 10rem`,
   border: 'none',
 });
 
