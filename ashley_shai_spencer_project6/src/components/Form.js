@@ -214,63 +214,61 @@ class Form extends Component {
           <h1>Magnetic Poetry</h1>
         </header>
         <form onSubmit={this.handleSubmit}>
-        <div className="search-container">
-        <div className="search-bar">
-            <input id="queryInput" onChange={this.handleChange} type="text" name="" value={this.state.queryInput} readOnly={this.state.topicSelected ? true : false}/>
-            <label htmlFor="queryInput">
-              <h3>Search a topic</h3>
-            </label>
-        </div>
-        <h3 className="inline-block">or...</h3>
-          {this.state.queryInput ?
-            <ul>
-              {
-                this.state.autoSuggest.map((word, i) => {
-                  return (
-                    <li className="show" onClick={this.getElementOnClick} key={i}>{word}</li>
-                  )
-                })
-              }
-            </ul> : null}
-        </div>
-        <div className="topic-container">
-          <fieldset className="category-options clearfix">
+          <div className="search-container">
+            <div className="search-bar clearfix">
+                  <input id="queryInput" onChange={this.handleChange} type="text" name="" value={this.state.queryInput} placeHolder="Enter a poem topic" readOnly={this.state.topicSelected ? true : false}/>
+                  <label className="visuallyhidden" htmlFor="queryInput">
+                    <h3>Enter a poem topic to get words</h3>
+                  </label>
+                  <button className="search-words" type="submit">Give me Words</button>
+            </div>
+            <h3 className="inline-block">or pick one of ours...</h3>
+              {this.state.queryInput ?
+                <ul>
+                  {
+                    this.state.autoSuggest.map((word, i) => {
+                      return (
+                        <li className="show" onClick={this.getElementOnClick} key={i}>{word}</li>
+                      )
+                    })
+                  }
+                </ul> : null}
+          </div>
+          <div className="topic-container">
+            <fieldset className="category-options clearfix">
 
-            <input onBlur={this.handleChange} onClick={this.toggleRadio} type="radio" name="category" value="Shakespeare" id="shakespeare" />
-            <label htmlFor="shakespeare">
-              <img src={ShakespeareIcon} alt="Make a poem based on the 'Shakespeare' topic" />
-              <h3>Shakespeare</h3>
-            </label>
+              <input onBlur={this.handleChange} onClick={this.toggleRadio} type="radio" name="category" value="Shakespeare" id="shakespeare" />
+              <label htmlFor="shakespeare">
+                <img src={ShakespeareIcon} alt="Make a poem based on the 'Shakespeare' topic" />
+                <h3>Shakespeare</h3>
+              </label>
 
-            <input onBlur={this.handleChange} onClick={this.toggleRadio} type="radio" name="category" value="Love" id="love" />
-            <label htmlFor="love">
-              <img src={LoveIcon} alt="Make a poem based on the 'Love' topic"/>
-              <h3>Love</h3>
-            </label>
+              <input onBlur={this.handleChange} onClick={this.toggleRadio} type="radio" name="category" value="Love" id="love" />
+              <label htmlFor="love">
+                <img src={LoveIcon} alt="Make a poem based on the 'Love' topic"/>
+                <h3>Love</h3>
+              </label>
 
-            <input onBlur={this.handleChange} onClick={this.toggleRadio} type="radio" name="category" value="Yoga" id="yoga" />
-            <label htmlFor="yoga">
-              <img src={YogaIcon} alt="Make a poem based on the 'Yoga' topic" />
-              <h3>Yoga</h3>
-            </label>
+              <input onBlur={this.handleChange} onClick={this.toggleRadio} type="radio" name="category" value="Yoga" id="yoga" />
+              <label htmlFor="yoga">
+                <img src={YogaIcon} alt="Make a poem based on the 'Yoga' topic" />
+                <h3>Yoga</h3>
+              </label>
 
-            <input onBlur={this.handleChange} onClick={this.toggleRadio} type="radio" name="category" value="Astrology" id="astrology" />
-            <label htmlFor="astrology">
-              <img src={AstrologyIcon} alt="Make a poem based on the 'Astrology' topic" />
-              <h3>Astrology</h3>
-            </label>
+              <input onBlur={this.handleChange} onClick={this.toggleRadio} type="radio" name="category" value="Astrology" id="astrology" />
+              <label htmlFor="astrology">
+                <img src={AstrologyIcon} alt="Make a poem based on the 'Astrology' topic" />
+                <h3>Astrology</h3>
+              </label>
 
-            <input onBlur={this.handleChange} onClick={this.toggleRadio} type="radio" name="category" value="Apocalypse" id="apocalypse" />
-            <label htmlFor="apocalypse">
-              <img src={ApocalypseIcon} alt="Make a poem based on the 'Apocalypse' topic" />
-              <h3>Apocalypse</h3>
-            </label>
-          </fieldset>
+              <input onBlur={this.handleChange} onClick={this.toggleRadio} type="radio" name="category" value="Apocalypse" id="apocalypse" />
+              <label htmlFor="apocalypse">
+                <img src={ApocalypseIcon} alt="Make a poem based on the 'Apocalypse' topic" />
+                <h3>Apocalypse</h3>
+              </label>
+            </fieldset>
 
-        </div>
-        <div>
-            <button type="submit">Give me Words</button>
-        </div>
+          </div>
         </form>
       </section>
     )

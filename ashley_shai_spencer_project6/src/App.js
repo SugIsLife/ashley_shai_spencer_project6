@@ -40,8 +40,7 @@ class App extends Component {
       <Router>
         <div className="App">
           <div className="wrapper">
-            <main>
-
+            <main className="main-section">
               <Route exact path="/" render={(props) =>
                 <Form {...props} passChildState={this.passChildState} queryInput={this.state.queryInput} />
               }/>
@@ -63,7 +62,7 @@ class App extends Component {
                 & 
                <a href="http://www.spen.io"> Spencer </a>
                 2018 &copy;
-            </footer>
+          </footer>
         </div>
       </Router>
     );

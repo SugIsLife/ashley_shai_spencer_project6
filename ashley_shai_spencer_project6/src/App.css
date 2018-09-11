@@ -126,6 +126,18 @@ legend, button::-moz-focus-inner, input::-moz-focus-inner {
   clear: both;
   height: 0; }
 
+.visuallyhidden:not(:focus):not(:active) {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  white-space: nowrap;
+  clip-path: inset(100%);
+  clip: rect(0 0 0);
+  overflow: hidden; }
+
 * {
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
@@ -136,7 +148,6 @@ legend, button::-moz-focus-inner, input::-moz-focus-inner {
   max-width: 1080px;
   width: 80%;
   margin: 0 auto;
-  padding: 2rem 2rem 0;
   transition: width .2s; }
 
 .App {
@@ -170,7 +181,7 @@ button, a.home-link {
   font-family: "Cabin", sans-serif;
   font-size: 1rem;
   padding: .5rem;
-  margin: 1rem 0;
+  margin: 0.5rem 0;
   background: #9BE0B6;
   border: none;
   color: #006750;
@@ -250,6 +261,10 @@ button, a.home-link {
   width: 20%;
   float: left; }
 
+.main-section {
+  height: 95vh;
+  padding-top: 30px; }
+
 .fridge-container {
   background: url(./assets/fridge.svg);
   background-size: 100%;
@@ -294,7 +309,6 @@ h1 {
 ul {
   list-style: none;
   padding: 0;
-  border: 1px solid grey;
   height: 100%; }
 
 .swal-button {
@@ -351,37 +365,43 @@ label {
 .logo {
   width: 50vmin; }
 
-.search-bar {
-  padding: 0 25vmax;
-  margin: 2.5rem 0 0; }
-  .search-bar label {
-    position: relative;
-    top: -100%;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    transition: top .3s ease-out, transform .3s ease-out; }
-  .search-bar input {
-    width: 100%;
-    padding: .5rem;
-    position: relative;
-    background: transparent;
-    border-radius: 0;
-    border: 3px solid #006750; }
+.search-bar label {
+  position: relative;
+  top: -100%;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  transition: top .3s ease-out, transform .3s ease-out; }
 
-.topic-container, .search-container {
-  position: relative; }
+.search-bar input {
+  width: 70%;
+  float: left;
+  padding: .5rem;
+  position: relative;
+  background: transparent;
+  border-radius: 0;
+  border: 3px solid #006750;
+  text-align: center; }
+
+.search-container {
+  padding: 0 15vmax;
+  margin: 2.5rem 0 0; }
+
+.search-words {
+  width: calc(30% - 5px);
+  float: left;
+  margin: 0;
+  padding: 0.5rem;
+  border: 3px solid transparent;
+  margin-left: 5px; }
 
 footer {
-  height: auto;
+  height: 5vh;
   background: #006750;
-  padding: 15px;
-  padding-bottom: 28px;
+  padding: 10px;
   text-align: right;
-  float: left;
   width: 100%;
-  margin-top: 50px;
   color: #f1f1f1; }
 
 /* Portrait tablet and small desktops */
@@ -394,6 +414,12 @@ footer {
     padding: 4rem 6rem; }
   .poem-page .fridge-container {
     width: 85% !important; } }
+
+@media (max-width: 820px) {
+  .main-section {
+    height: auto; }
+  footer {
+    height: auto; } }
 
 /* Landscape phone to portrait tablet */
 @media (max-width: 768px) {
@@ -418,9 +444,7 @@ footer {
     width: 100%;
     margin: 0; }
   .poem-page .fridge-container {
-    width: 100% !important; }
-  footer {
-    margin-top: 80px; } }
+    width: 100% !important; } }
 
 /* Landscape phones and down */
 @media (max-width: 480px) {
@@ -441,6 +465,8 @@ footer {
   .main-form fieldset img {
     width: 5vmax;
     margin: 0.5rem 0; }
+  .main-section {
+    height: auto; }
   .fridge-container {
     position: absolute;
     top: 45%;

@@ -64,27 +64,40 @@ label{
 }
 
 .search-bar{
-    // width: 50%;
-    padding: 0 25vmax;
-    // @include position(absolute, 50%,0,0,0);
-    margin: 2.5rem 0 0;
+    
     label{
         @include position(relative,-100%,0,0,0);
         width: 100%;
         transition: top .3s ease-out, transform .3s ease-out;
     }
     input{
-        width: 100%;
+        width: 70%;
+        float: left;
         padding: .5rem;
         position: relative;
         background: transparent;
         border-radius: 0;
         border: 3px solid $green;
+        text-align: center;
     }
 }
 
-.topic-container, .search-container{
-    position: relative;
-    // float: left;
-    // width: 50%;
+.search-container {
+    padding: 0 15vmax;
+    margin: 2.5rem 0 0;
 }
+
+.search-words {
+    width: calc(30% - 5px);
+    float: left;
+    margin: 0;
+    padding: 0.5rem;
+    border: 3px solid transparent;
+    margin-left: 5px;
+}
+
+// .topic-container, .search-container{
+//     // position: relative;
+//     // float: left;
+//     // width: 50%;
+// }
