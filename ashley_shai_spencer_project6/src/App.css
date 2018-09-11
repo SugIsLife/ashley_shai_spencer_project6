@@ -217,6 +217,11 @@ ul {
   z-index: 10;
   border-radius: 2rem; }
 
+.swal-button {
+  background: #FE0046; }
+
+form {
+  text-align: center; }
 #word-list {
   width: 500px;
   height: 500px;

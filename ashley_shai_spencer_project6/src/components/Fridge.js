@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import '../App.css';
 import { Link } from 'react-router-dom';
 import firebase from './firebase';
+import swal from 'sweetalert';
+
+
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 
 
@@ -133,7 +136,8 @@ class Fridge extends Component{
       // pass selected words to firebase
 
     } else {
-      alert('why are you sharing an empty poem?!')
+      swal("hey you!", "why are you sharing an empty poem?!", "warning");
+      // alert('why are you sharing an empty poem?!')
     }
 
   }
