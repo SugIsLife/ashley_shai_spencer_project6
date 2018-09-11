@@ -3,9 +3,8 @@ import '../App.css';
 import { Link } from 'react-router-dom';
 import firebase from './firebase';
 import swal from 'sweetalert';
-
-
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+import OdeLogo from '../assets/odeLogo.svg';
 
 
 const reorder = (list, startIndex, endIndex) => {
@@ -139,6 +138,7 @@ class Fridge extends Component{
 
         const poemKey = dbRef.push(this.state.selectedWords).key;
         //update URL path to go to poem component 
+        swal("You are a poetic genius.", `Share your poem with all your friends with this URL: www.magnetic-poetry.firebaseapp.com/poem/${poemKey}`);
         this.props.history.push(`/poem/${poemKey}`)
       })
 
@@ -146,7 +146,7 @@ class Fridge extends Component{
 
     } else {
       swal("hey you!", "why are you sharing an empty poem?!", "warning");
-      // alert('why are you sharing an empty poem?!')
+      
     }
 
   }
@@ -159,9 +159,13 @@ class Fridge extends Component{
     return (
       <section className="fridge">
         <div className="clearfix">
-          <div className="row">
-            <h1>Le fridge</h1>
-          </div>
+          <header className="fridge-header header clearfix">
+            <h1 className="fridge-logo"><img src={OdeLogo} alt="An ode to magnetic fridge poems" className="logo"/></h1>
+            <nav className="fridge-nav nav clearfix">
+              <Link to="/" className="home-link">Home</ Link>
+              <button className="share-poem" onClick={this.sharePoem}>Share Poem</button>
+            </nav>
+          </header>
           <DragDropContext onDragEnd={this.onDragEnd}>
             <div className="fridge-container" >
               <Droppable droppableId="droppable">
@@ -199,12 +203,7 @@ class Fridge extends Component{
               </Droppable>
             </div>
             <div className="poem-dashboard">
-              <div className="row">
-                <button onClick={this.sharePoem}>Share Poem</button>
-              </div>
-              <div className="row">
-                <Link to="/" className="button">Home</ Link>
-              </div>
+              <p>Drag and drop me on the fridge!</p>
               <Droppable droppableId="droppable2">
                 {(provided, snapshot) => (
                   <ul

@@ -52,7 +52,8 @@ class Form extends Component {
 
     // On change && only if the target's id is the queryValue && there is no word evaluted as a swear word, query the api for suggestions using the event target's value as the input
     if (e.target.id === "queryInput" && !this.profanityFilter(e.target.value)) {
-      this.suggestionQuery(e.target.value)
+
+      _.throttle(this.suggestionQuery(e.target.value)
         .then(({ data }) => {
           // map over the suggestions, returning an array of just the words
           const autoSuggest = data.map((word) => {
@@ -62,7 +63,7 @@ class Form extends Component {
           this.setState({
             autoSuggest
           })
-        })
+        }).catch(console.log),1000);
     } else {
       swal("You can't swear here", "naughty naughty!", "error");
       // swal('You can\'t swear here', 'warning')
