@@ -250,6 +250,12 @@ ul {
 .swal-button {
   background: #FE0046; }
 
+a {
+  text-decoration: none;
+  color: #f1f1f1; }
+  a:hover {
+    color: #FE0046; }
+
 .main-form {
   text-align: center;
   position: relative; }
@@ -317,6 +323,17 @@ label {
 .topic-container, .search-container {
   position: relative; }
 
+footer {
+  height: auto;
+  background: #006750;
+  padding: 15px;
+  padding-bottom: 28px;
+  text-align: right;
+  float: left;
+  width: 100%;
+  margin-top: 50px;
+  color: #f1f1f1; }
+
 /* Portrait tablet and small desktops */
 @media (max-width: 940px) {
   .wrapper {
@@ -341,7 +358,9 @@ label {
   .poem-dashboard {
     height: 8rem;
     width: 100%;
-    margin: 0; } }
+    margin: 0; }
+  footer {
+    margin-top: 80px; } }
 
 /* Landscape phones and down */
 @media (max-width: 480px) {
