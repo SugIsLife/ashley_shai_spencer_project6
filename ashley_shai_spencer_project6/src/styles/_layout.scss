@@ -3,7 +3,7 @@
     max-width: 1080px;
     width: 80%;
     margin: 0 auto;
-    padding: 2rem 2rem 0;
+    // padding: 2rem 2rem 0;
     transition: width .2s;
 }
 
@@ -14,11 +14,11 @@
     // padding: 2rem;
     overflow-y: scroll;
 }
+
+
+
 .fridge{
     max-height: 100vh;
-}
-.fridge-container{
-   
 }
 
 .category-options{
@@ -47,7 +47,7 @@ button, a.home-link{
     font-family: $basefont;
     font-size: 1rem;
     padding: .5rem;
-    margin: 1rem 0;
+    margin: 0.5rem 0;
     background: $mint;
     border: none;
     color: $green;
