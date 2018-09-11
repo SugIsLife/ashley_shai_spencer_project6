@@ -247,6 +247,19 @@ ul {
   border: 1px solid grey;
   height: 100%; }
 
+<<<<<<< HEAD
+=======
+#word-list {
+  width: 500px;
+  height: 500px;
+  float: left; }
+
+#fridge-words {
+  width: 500px;
+  height: 500px;
+  float: left; }
+
+>>>>>>> 42bb4116b303b32c7719c79db63fbbfa2339f7e7
 .main-form {
   text-align: center;
   position: relative; }
