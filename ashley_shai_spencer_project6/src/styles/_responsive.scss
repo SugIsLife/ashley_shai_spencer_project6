@@ -19,6 +19,16 @@
         }
     }
 }
+
+@media (max-width: 820px) {
+    .main-section {
+        height: auto;
+    }
+    footer {
+        height: auto;
+    }
+}
+
 /* Landscape phone to portrait tablet */
 @media (max-width: 768px) {
     .wrapper{
@@ -52,9 +62,9 @@
         }
     }
 
-    footer{
-        margin-top: 80px;
-    }
+    // footer{
+    //     margin-top: 80px;
+    // }
 }
 /* Landscape phones and down */
 @media (max-width: 480px) {
@@ -88,6 +98,9 @@
                 margin: 0.5rem 0;
             }
         }
+    }
+    .main-section {
+        height: auto;
     }
     .fridge-container{
         @include position(absolute,45%,0,0,50%);
