@@ -1,7 +1,7 @@
 // @import './vars';
 .wrapper{
     max-width: 1080px;
-    width: 80%;
+    width: 90%;
     margin: 0 auto;
     // padding: 2rem 2rem 0;
     transition: width .2s;
@@ -28,7 +28,7 @@
 
 .poem-dashboard{
     float: left;
-    margin: 1rem 0 0 2rem; 
+    margin: 1rem 2rem 0 0; 
     width: calc(30% - 2rem);
     height: 95vmin;
     text-align: center;
@@ -55,23 +55,22 @@ button, a.home-link{
     transition: box-shadow .3s;
     &:hover{
         box-shadow: 5px 5px 0 $green;
-        transition: box-shadow .2s ease-in-out;
+        transition: box-shadow .1s ease-in-out;
     }
     &:active{
-        box-shadow: 5px 5px 15px $green;
+        box-shadow: 7px 7px 10px $green;
     }
 }
 
 .poem-page{
     position: relative;
-    width: 100%;
+    overflow: hidden;
     .fridge-container{
-        // @include position(absolute,0,0,0,50%);
-        // transform: translateX(50%);
         margin: 0 auto;
         display: block;
         float: none;
-        width: 85%;
-        // width: 60vmax;
+        width: 55%;
+        height: 76vh;
+        overflow: hidden;
     }
 }

@@ -222,19 +222,19 @@ class Form extends Component {
                   </label>
                   <button className="search-words" type="submit">Give me Words</button>
             </div>
-            <h3 className="inline-block">or pick one of ours...</h3>
               {this.state.queryInput ?
                 <ul>
                   {
                     this.state.autoSuggest.map((word, i) => {
                       return (
                         <li className="show" onClick={this.getElementOnClick} key={i}>{word}</li>
-                      )
-                    })
-                  }
+                        )
+                      })
+                    }
                 </ul> : null}
           </div>
           <div className="topic-container">
+            <h3 className="row">or pick one of ours...</h3>
             <fieldset className="category-options clearfix">
 
               <input onBlur={this.handleChange} onClick={this.toggleRadio} type="radio" name="category" value="Shakespeare" id="shakespeare" />

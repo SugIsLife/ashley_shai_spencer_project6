@@ -146,7 +146,7 @@ legend, button::-moz-focus-inner, input::-moz-focus-inner {
 
 .wrapper {
   max-width: 1080px;
-  width: 80%;
+  width: 90%;
   margin: 0 auto;
   transition: width .2s; }
 
@@ -165,7 +165,7 @@ legend, button::-moz-focus-inner, input::-moz-focus-inner {
 
 .poem-dashboard {
   float: left;
-  margin: 1rem 0 0 2rem;
+  margin: 1rem 2rem 0 0;
   width: calc(30% - 2rem);
   height: 95vmin;
   text-align: center;
@@ -189,24 +189,27 @@ button, a.home-link {
   transition: box-shadow .3s; }
   button:hover, a.home-link:hover {
     box-shadow: 5px 5px 0 #006750;
-    transition: box-shadow .2s ease-in-out; }
+    transition: box-shadow .1s ease-in-out; }
   button:active, a.home-link:active {
-    box-shadow: 5px 5px 15px #006750; }
+    box-shadow: 7px 7px 10px #006750; }
 
 .poem-page {
   position: relative;
-  width: 100%; }
+  overflow: hidden; }
   .poem-page .fridge-container {
     margin: 0 auto;
     display: block;
     float: none;
-    width: 85%; }
+    width: 55%;
+    height: 76vh;
+    overflow: hidden; }
 
 .inline-block {
   display: inline-block; }
 
 .row {
-  width: 100%; }
+  width: 100%;
+  display: block; }
 
 .fridge-header, .poem-header {
   height: 15vh;
@@ -266,7 +269,7 @@ button, a.home-link {
   background-size: 100%;
   background-repeat: no-repeat;
   background-position: top;
-  padding: 4rem 10rem;
+  padding: 4rem 6rem;
   height: 100vh;
   float: left;
   width: 70%;
@@ -385,7 +388,9 @@ label {
   margin: 2.5rem 0 0; }
 
 .topic-container {
-  position: relative; }
+  position: relative;
+  clear: both;
+  margin-top: 7rem; }
 
 .search-words {
   width: calc(30% - 5px);
@@ -411,7 +416,10 @@ footer {
   .main-form fieldset label {
     width: 15%; }
   .fridge-container {
+    width: 60%;
     padding: 4rem 6rem; }
+  .poem-dashboard {
+    width: 33%; }
   .poem-page .fridge-container {
     width: 80%; } }
 
@@ -424,30 +432,40 @@ footer {
 /* Landscape phone to portrait tablet */
 @media (max-width: 768px) {
   .wrapper {
-    width: 100%; }
+    width: 90%; }
   .main-form .search-bar {
-    padding: 0 25vmin;
-    transition: padding .2s; }
+    transition: padding .2s;
+    margin-bottom: 2rem; }
   .main-form fieldset label {
     width: 20%; }
+  .search-container {
+    padding: 0; }
   .fridge .fridge-container {
-    position: absolute;
-    top: 40%;
-    right: 0;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 85%;
+    width: 100%;
+    float: none;
+    clear: both;
+    margin: auto 0;
     padding: 4rem 6rem; }
+  .fridge-logo, .fridge-nav, .poem-logo, .poem-nav {
+    width: 50%; }
   .poem-dashboard {
     height: 8rem;
     width: 100%;
-    margin: 0; }
+    margin: 0 0 2rem;
+    float: left;
+    border: 2px solid silver;
+    padding-top: 0; }
+    .poem-dashboard p {
+      margin: .25rem 0; }
   .poem-page .fridge-container {
-    width: 90%; } }
+    width: 90%; }
+  .poem-page header p {
+    display: none; } }
 
 /* Landscape phones and down */
 @media (max-width: 480px) {
+  .wrapper {
+    width: 95%; }
   .main-form .search-bar {
     padding: 0 5%; }
   .main-form fieldset label {
@@ -467,13 +485,23 @@ footer {
     margin: 0.5rem 0; }
   .main-section {
     height: auto; }
-  .fridge-container {
-    position: absolute;
-    top: 45%;
-    right: 0;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    padding: 4rem 2rem; }
+  .search-container button, .search-container input {
+    display: block;
+    width: 100%; }
+  .search-container button {
+    margin-left: 0;
+    margin-top: 1rem; }
+  .fridge .fridge-container {
+    padding: 1rem 1rem 1rem 4rem; }
   .poem-dashboard {
-    height: 8.5rem; } }
+    height: 8.5rem;
+    margin-top: 2rem; }
+  .poem-page .fridge-container {
+    width: 100%;
+    padding: 1rem 1rem 1rem 4rem; }
+  .fridge-logo, .fridge-nav {
+    width: 100%;
+    display: block; }
+  .poem-nav {
+    width: 40%;
+    margin-left: 1.5rem; } }
