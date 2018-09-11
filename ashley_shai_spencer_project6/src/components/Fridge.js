@@ -150,7 +150,7 @@ class Fridge extends Component{
   render() {
     return (
       <section className="fridge">
-        <div className="clearfix">
+        <div className="clearfix wrapper">
           <header className="fridge-header header clearfix">
             <h1 className="fridge-logo"><img src={OdeLogo} alt="An ode to magnetic fridge poems" className="logo"/></h1>
             <nav className="fridge-nav nav clearfix">
@@ -159,17 +159,17 @@ class Fridge extends Component{
             </nav>
           </header>
           <DragDropContext onDragEnd={this.onDragEnd}>
-            <div className="fridge-container" >
-              <Droppable droppableId="droppable">
+            <div className="poem-dashboard">
+              <p>Drag and drop me on the fridge!</p>
+              <Droppable droppableId="droppable2">
                 {(provided, snapshot) => (
                   <ul
-                    id="fridge-words"
+                    id="word-list"
                     ref={provided.innerRef}
                     style={getListStyle(snapshot.isDraggingOver)}>
                     {
 
-                      this.state.selectedWords.map((item, index) => (
-
+                      this.state.wordList.map((item, index) => (
                         <Draggable
                           key={item}
                           draggableId={item}
@@ -194,17 +194,17 @@ class Fridge extends Component{
                 )}
               </Droppable>
             </div>
-            <div className="poem-dashboard">
-              <p>Drag and drop me on the fridge!</p>
-              <Droppable droppableId="droppable2">
+            <div className="fridge-container" >
+              <Droppable droppableId="droppable">
                 {(provided, snapshot) => (
                   <ul
-                    id="word-list"
+                    id="fridge-words"
                     ref={provided.innerRef}
                     style={getListStyle(snapshot.isDraggingOver)}>
                     {
 
-                      this.state.wordList.map((item, index) => (
+                      this.state.selectedWords.map((item, index) => (
+
                         <Draggable
                           key={item}
                           draggableId={item}
