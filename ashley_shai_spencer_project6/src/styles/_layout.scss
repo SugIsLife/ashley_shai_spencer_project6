@@ -3,61 +3,20 @@
     max-width: 1080px;
     width: 80%;
     margin: 0 auto;
+    padding: 2rem;
 }
 
 .App{
-    height: 100vh;
+    // height: 100vh;
     background: $light;
-    padding: 2rem;
-    overflow: hidden;
+    // padding: 2rem;
+    // overflow: hidden;
 }
 
 .fridge-container{
-    // margin: 20px;
-    // margin-bottom: 0;
     float: left;
     width: 70%;
-    // height: 2000px;
-    // max-height: 100%;
     
-}
-
-.main-form{
-    position: relative;
-    fieldset{
-        // position: absolute;
-        left: 50%;
-        // transform: translateX(-50%);
-        border: none;
-    }
-    input[type="radio"]:checked{
-        +label{
-            border: 3px solid $red;
-        }
-    }
-    label{
-        // @include position(absolute, 0,0,0,50%);
-        float: left;
-        width: calc(20% - 3rem);
-        margin: 1.5rem;
-        padding: 1.5rem .5rem;
-        transition: background .3s;
-        border-radius: 2rem;
-        color: $green;
-        img{
-            max-width: 40%;
-            min-height: 3rem;
-            min-width: 3rem;
-        }
-        h3{
-            font-size: .8rem;
-            margin-top: 0;
-        }
-        &:hover{
-            background: $mint;
-
-        }
-    }
 }
 
 .category-options{
@@ -73,10 +32,26 @@
     max-height: 80vh;
     text-align: center;
     overflow: scroll;
-    button, .show{
+    .show{
         background: $light;
     }
     ul{
         width: 100%;
+    }
+}
+
+button{
+    position: relative;
+    font-family: $basefont;
+    font-size: 1.2rem;
+    padding: .5rem;
+    background: $mint;
+    border: none;
+    color: $green;
+    z-index: 999;
+    box-shadow: 0px 0px 0 $green;
+    transition: box-shadow .3s;
+    &:hover{
+        box-shadow: 5px 5px 0 $green;
     }
 }

@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
-import '../App.css';
 // import { Link } from 'react-router-dom';
+import '../App.css';
 import axios from 'axios';
 import _ from 'underscore';
 import Filter from 'bad-words';
 import swal from 'sweetalert';
 
 
+import Mousetrap from 'mousetrap';
 
 // IMAGES
 import LoveIcon from '../assets/cupid.svg';
@@ -14,6 +15,7 @@ import YogaIcon from '../assets/yoga.svg';
 import ApocalypseIcon from '../assets/apocalypse.svg';
 import AstrologyIcon from '../assets/astrology.svg';
 import ShakespeareIcon from '../assets/shakespeare.svg';
+import OdeLogo from '../assets/odeLogo.svg';
 
 let wordList = []
 
@@ -32,6 +34,9 @@ class Form extends Component {
   
   componentDidMount() {
     console.log(this.state.wordList);
+    
+  Mousetrap.bind(['* k', 'ctrl+r', `up up down down left right left right b a enter`], this.getSwears);
+    
   }
   // function makes an api call for auto suggestions and returns a promise
   suggestionQuery = (input) => {
@@ -127,13 +132,14 @@ class Form extends Component {
       })
       //get array of just the words
       verbs.slice(0, 10).map((word) => {
-        wordList.push(word.word)
+        wordList.push(word.word.toLowerCase())
       });
       this.setState({
         wordList,
       }, () => {
-        const shuffledWords = _.shuffle(wordList)
-        this.props.passChildState('wordList', shuffledWords)
+        const shuffledWords = _.shuffle(wordList);
+        const duplicateFree = _.uniq(shuffledWords)
+        this.props.passChildState('wordList', duplicateFree)
         this.props.history.push("/fridge")
       })
       // return verbList.word
@@ -150,7 +156,7 @@ class Form extends Component {
     if(this.state.queryInput === "Shakespeare"){
       wordList = ['if', 'the', 'a', 'it', 'ly', 'ing', 'd', 'ed', 'ful', 'y', 'anti', 'un', 're', '!', '?', 'his', 'her']
       this.getWordsQuery('rel_trg', 'thou', 15).then(({data}) => {
-        data.map((word) => wordList.push(word.word))
+        data.map((word) => wordList.push(word.word.toLowerCase()))
         console.log(wordList);
       })
     }
@@ -177,6 +183,16 @@ class Form extends Component {
     })
   }
 
+  getSwears = () => {
+    //setState to an input and call setWordList()
+    console.log('fuck it worked!');
+    this.setState({
+      queryInput: 'fuck',
+    }, () => {
+      this.setWordList();
+    })
+  }
+
   handleSubmit = (e) => {
     e.preventDefault();
     if (!this.state.queryInput) {
@@ -191,11 +207,19 @@ class Form extends Component {
 
   render() {
     return (
-      <section className="wrapper main-form">
-        <h1>Magnetic Poetry</h1>
+      <section className="main-form clearfix">
+        <header>
+          <img src={OdeLogo} alt="An ode to magnetic fridge poems" className="logo"/>
+          <h1>Magnetic Poetry</h1>
+        </header>
         <form onSubmit={this.handleSubmit}>
-        <div>
-          <input id="queryInput" onChange={this.handleChange} type="text" name="" value={this.state.queryInput} readOnly={this.state.topicSelected ? true : false} />
+        <div className="search-container">
+        <div className="search-bar">
+            <input id="queryInput" onChange={this.handleChange} type="text" name="" value={this.state.queryInput} readOnly={this.state.topicSelected ? true : false}/>
+            <label htmlFor="queryInput">
+              <h3>Search a topic</h3>
+            </label>
+        </div>
           {this.state.queryInput ?
             <ul>
               {
@@ -207,7 +231,9 @@ class Form extends Component {
               }
             </ul> : null}
         </div>
+        <div className="topic-container">
           <fieldset className="category-options clearfix">
+            <h3>or...</h3>
 
             <input onBlur={this.handleChange} onClick={this.toggleRadio} type="radio" name="category" value="Shakespeare" id="shakespeare" />
             <label htmlFor="shakespeare">
@@ -239,9 +265,12 @@ class Form extends Component {
               <h3>Apocalypse</h3>
               <img src={ApocalypseIcon} alt="Make a poem based on the 'Apocalypse' topic" />
             </label>
-
           </fieldset>
-          <input type="submit" value="Give me Words" id="" />
+
+        </div>
+        <div>
+            <button type="submit">Give me Words</button>
+        </div>
         </form>
       </section>
     )

@@ -5,6 +5,52 @@ import firebase from './firebase';
 import swal from 'sweetalert';
 
 
+import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+
+
+const reorder = (list, startIndex, endIndex) => {
+  const result = Array.from(list);
+  const [removed] = result.splice(startIndex, 1);
+  result.splice(endIndex, 0, removed);
+
+  return result;
+};
+
+/**
+ * Moves an item from one list to another list.
+ */
+const move = (source, destination, droppableSource, droppableDestination) => {
+  const sourceClone = Array.from(source);
+  const destClone = Array.from(destination);
+  const [removed] = sourceClone.splice(droppableSource.index, 1);
+
+  destClone.splice(droppableDestination.index, 0, removed);
+
+  const result = {};
+  result[droppableSource.droppableId] = sourceClone;
+  result[droppableDestination.droppableId] = destClone;
+
+  return result;
+};
+
+const getItemStyle = (isDragging, draggableStyle) => ({
+  // some basic styles to make the items look a bit nicer
+  userSelect: 'none',
+  padding: `5px`,
+  margin: `2px`,
+
+  // change background colour if dragging
+  background: isDragging ? 'lightgreen' : '#f1f1f1',
+
+  // styles we need to apply on draggables
+  ...draggableStyle
+});
+
+const getListStyle = isDraggingOver => ({
+  background: isDraggingOver ? 'lightblue' : 'lightgrey',
+  padding: `2px`,
+  width: 250
+});
 
 
 class Fridge extends Component{
@@ -12,64 +58,66 @@ class Fridge extends Component{
     super(props);
     this.state = {
       wordList: this.props.wordList,
-      selectedWords: [],
+      selectedWords: ['placeholder'],
     }
   }
 
-  onDragStart = (ev, id) => {
-    console.log('dragstart:', id);
-    ev.dataTransfer.setData("id", id);
-  }
+  id2List = {
+    droppable: 'selectedWords',
+    droppable2: 'wordList'
+  };
 
-  onDragOver = (ev) => {
-    ev.preventDefault();
-    // ev.target.
-    if(ev.target.className == "dropzone") {
-    ev.target.style.background = "purple";
-  }
-}
+  //returns the correct array from state based on which list the item originated from 
+  getList = id => this.state[this.id2List[id]];
 
-  onDrop = (ev, cat) => {
-    let id = ev.dataTransfer.getData('id');
-    ev.target.style.background = "";
-    // console.log(ev, cat);
+  onDragEnd = result => {
+    const { source, destination } = result;
+    console.log('dragEnd:', result)
 
-    if (cat == 'selectedWords') {
-      const tempSelected = this.state.wordList.slice(0);
-      console.log('onDrop:', id);
-      const index = this.getIndexOfClicked(id, this.state.wordList)
-      const removedWord = tempSelected.splice(index, 1);
-
-      this.setState(prevState => ({
-        selectedWords: [...prevState.selectedWords, removedWord[0]],
-        wordList: tempSelected
-      }))
-    } else if (cat == 'wordList') {
-      const tempSelected = this.state.selectedWords.slice(0);
-      console.log('onDrop:', id);
-      //get index of clicked word in the array
-      const index = this.getIndexOfClicked(id, this.state.selectedWords)
-      //remove that word from the array
-      const removedWord = tempSelected.splice(index, 1);
-      //update the state by adding new spliced array and pushing removed word to other array
-      this.setState(prevState => ({
-        wordList: [...prevState.wordList, removedWord[0]],
-        selectedWords: tempSelected
-      }));
+    // dropped outside the list
+    if (!destination) {
+      return;
     }
 
-  }
+    //if source and destination are the same, reorder that list based on where the item was dropped 
+    if (source.droppableId === destination.droppableId) {
+      const items = reorder(
+        this.getList(source.droppableId),
+        source.index,
+        destination.index
+      );
+      //update state with new array order
+      let state = { selectedWords: items };
 
-  getIndexOfClicked = (clickedItem, array) => {
-    // const clickedWord = clickedItem.innerHTML
-    return array.indexOf(clickedItem);
+      //if source is equal to droppable2 update selected items 
+      if (source.droppableId === 'droppable2') {
+        state = { wordList: items };
+      }
+
+      this.setState(state);
+    } else {
+      //if the source and destination are different the item needs to be moved between the two lists 
+      const result = move(
+        //where it is coming from
+        this.getList(source.droppableId),
+        //where it was dropped
+        this.getList(destination.droppableId),
+        source,
+        destination
+      );
+      //reset with new info 
+      this.setState({
+        selectedWords: result.droppable,
+        wordList: result.droppable2
+      });
+    }
   }
 
   sharePoem = (e) => {
     //check to see if there are words in the poem 
     console.log(this.state.selectedWords);
     if (this.state.selectedWords.length > 0) {
-      
+
       this.setState({
         wordList: [],
 
@@ -79,76 +127,98 @@ class Fridge extends Component{
         this.props.passChildState("selectedWords", this.state.selectedWords)
         this.props.passChildState("wordList", [])
         console.log(this.state.selectedWords);
-        
+
         const poemKey = dbRef.push(this.state.selectedWords).key;
         //update URL path to go to poem component 
         this.props.history.push(`/poem/${poemKey}`)
       })
-          
-    // pass selected words to firebase
-    
+
+      // pass selected words to firebase
+
     } else {
       swal("hey you!", "why are you sharing an empty poem?!", "warning");
       // alert('why are you sharing an empty poem?!')
     }
 
   }
+  
 
-  resetPage = () => {
-    window.location.reload();
-  }
+  // resetPage = () => {
+  //   window.location.reload();
+  // }
 
   render() {
     return (
       <div className="clearfix">
         <h1>Le fridge</h1>
-        <section className="fridge-container">
-          <ul id="fridge-words" className="dropzone"
-            onDragOver={(e) => this.onDragOver(e)}
-            onDrop={(e) => this.onDrop(e, "selectedWords")}>{
-              this.state.selectedWords
-              ?
-              this.state.selectedWords.map((word, i) => {
-                return (
-                  <li key={i}
-                    id={word}
-                    draggable
-                    onDragStart={(e) => {
-                      this.onDragStart(e, e.target.id)
-                    }} className="show">{word}</li>
-                )
-              })
-              :
-              null
-            }
-          </ul>
-        </section>
-        <aside className="poem-dashboard">
-          <button className="share-poem show" onClick={this.sharePoem}>Share Poem</button>
-          <section className="word-container">
-            <ul className="dropzone" id="word-list"
-              onDragOver={(e) => this.onDragOver(e)}
-              onDrop={(e) => this.onDrop(e, "wordList")}>
-              {/* map through the word choices array and create an li for each word  */}
-              {
-                this.state.wordList
-                  ?
-                  this.state.wordList.map((word, i) => {
-                    return (
-                      <li key={i}
-                        id={word}
-                        draggable
-                        onDragStart={(e) => {
-                          this.onDragStart(e, e.target.id)
-                        }} className="show">{word}</li>
-                    )
-                  })
-                  :
-                  null
-              }
-            </ul>
-          </section>
-        </aside>
+        <button className="share-poem show" onClick={this.sharePoem}>Share Poem</button>
+        <DragDropContext onDragEnd={this.onDragEnd}>
+          <Droppable droppableId="droppable">
+            {(provided, snapshot) => (
+              <ul 
+                id="fridge-words" 
+                ref={provided.innerRef}
+                style={getListStyle(snapshot.isDraggingOver)}>
+                  {
+                  
+                  this.state.selectedWords.map((item, index) => (
+                  
+                    <Draggable
+                      key={item}
+                      draggableId={item}
+                      index={index}>
+                      {(provided, snapshot) => (
+                        <li 
+                          ref={provided.innerRef}
+                          {...provided.draggableProps}
+                          {...provided.dragHandleProps}
+                          style={getItemStyle(
+                            snapshot.isDragging,
+                            provided.draggableProps.style
+                          )}
+                          className="show">
+                          {item}
+                        </li>
+                      )}
+                    </Draggable>
+                  ))}
+                  {provided.placeholder}
+                </ul>
+              )}
+            </Droppable>
+            <Droppable droppableId="droppable2">
+              {(provided, snapshot) => (
+                <ul
+                  id="word-list"
+                  ref={provided.innerRef}
+                  style={getListStyle(snapshot.isDraggingOver)}>
+                  {
+
+                    this.state.wordList.map((item, index) => (
+                      <Draggable
+                        key={item}
+                        draggableId={item}
+                        index={index}>
+                        {(provided, snapshot) => (
+                          <li
+                            ref={provided.innerRef}
+                            {...provided.draggableProps}
+                            {...provided.dragHandleProps}
+                            style={getItemStyle(
+                              snapshot.isDragging,
+                              provided.draggableProps.style
+                            )}
+                            className="show">
+                            {item}
+                          </li>
+                        )}
+                      </Draggable>
+                    ))}
+                  {provided.placeholder}
+                </ul>
+              )}
+            </Droppable>
+        </DragDropContext>
       </div>
     )
   }
