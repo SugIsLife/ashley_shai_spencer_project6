@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import firebase from './firebase';
+import OdeLogo from '../assets/odeLogo.svg';
 
 
 class Poem extends Component {
@@ -37,9 +38,15 @@ class Poem extends Component {
   render() {
   return (
     <section className="poem-page">
+      <header className="poem-header clearfix">
+        <h1 className="poem-logo"><img src={OdeLogo} alt="An ode to magnetic fridge poems" className="logo" /></h1>
+        <nav className="poem-nav clearfix">
+          {/* <Link to="/" className="home-link">Home</ Link> */}
+          <button className="make-own" onClick={this.makeYourOwn}>Make Your Own</button>
+        </nav>
+        <p>...an app that pays tribute to the magnetic poetry kits of your childhood</p>
+      </header>
       <div className="fridge-container">
-        <h1>POEM SECTION</h1>
-        <button onClick={this.makeYourOwn}>Make Your Own</button>
         <ul>
           {this.state.poemArray.map( (data, i) => {
             return (
