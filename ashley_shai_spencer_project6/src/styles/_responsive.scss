@@ -3,6 +3,21 @@
     .wrapper{
         width: 95%;
     }
+    .main-form{
+        fieldset{
+            label{
+                width: 15%;
+            }
+        }
+    }
+    .fridge-container{
+        padding: 4rem 6rem;
+    }
+    .poem-page{
+        .fridge-container{
+            width: 85% !important;
+        }
+    }
 }
 /* Landscape phone to portrait tablet */
 @media (max-width: 768px) {
@@ -13,6 +28,11 @@
         .search-bar{
             padding:  0 25vmin;
             transition: padding .2s;
+        }
+        fieldset{
+            label{
+                width: 20%;
+            }
         }
     }
     .fridge-container{
@@ -25,6 +45,11 @@
         height: 8rem;
         width: 100%;
         margin: 0;
+    }
+    .poem-page{
+        .fridge-container{
+            width: 100% !important;
+        }
     }
 
     footer{
@@ -40,7 +65,23 @@
         }
         fieldset{
             label{
+                position: relative;
                 width: 100%;
+                h3, img{
+                    // display: inline-block;
+                    float: left;
+                }
+                h3{
+                    position: absolute;
+                    top: 50%; 
+                    bottom: 0;
+                    left: 25%;
+                    // @include position(absolute, 50%,0,0,50%);
+                    transform: translateY(-50%);
+                    // margin-left: 3rem;
+                    font-size: 1rem;
+                }
+
             }
             img{
                 width: 5vmax;

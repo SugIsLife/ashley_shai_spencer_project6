@@ -18,12 +18,7 @@
     max-height: 100vh;
 }
 .fridge-container{
-    height: 100vh;
-    // @include position(absolute,50%,0,0,0);
-    float: left;
-    width: 70%;
-    background: src('../assets/fridge.svg') center no-repeat;
-    background-size: cover;
+   
 }
 
 .category-options{
@@ -35,7 +30,6 @@
     float: left;
     margin: 1rem 0 0 2rem; 
     width: calc(30% - 2rem);
-    border-radius: 2rem;
     height: 80vmax;
     max-height: 80vh;
     text-align: center;
@@ -73,6 +67,8 @@ button, a.home-link{
     position: relative;
     width: 100%;
     .fridge-container{
-        width: 100%;
+        @include position(absolute,0,0,0,50%);
+        transform: translateX(-50%);
+        width: 60vmax !important;
     }
 }
