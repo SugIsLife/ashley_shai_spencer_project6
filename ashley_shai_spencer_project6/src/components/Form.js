@@ -4,6 +4,9 @@ import '../App.css';
 import axios from 'axios';
 import _ from 'underscore';
 import Filter from 'bad-words';
+import swal from 'sweetalert';
+
+
 import Mousetrap from 'mousetrap';
 
 // IMAGES
@@ -61,7 +64,8 @@ class Form extends Component {
           })
         })
     } else {
-      alert('You can\'t swear here')
+      swal("You can't swear here", "naughty naughty!", "error");
+      // swal('You can\'t swear here', 'warning')
       this.setState({
         queryInput: '',
       })
@@ -192,7 +196,7 @@ class Form extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     if (!this.state.queryInput) {
-      return alert('To make a poem, you need to enter a word in, dummy!')
+      return swal('To make a poem, you need to enter a word in, dummy!')
     } else {
       this.setWordList()
     }
