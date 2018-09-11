@@ -4,6 +4,7 @@ import '../App.css';
 import axios from 'axios';
 import _ from 'underscore';
 import Filter from 'bad-words';
+import Mousetrap from 'mousetrap';
 
 // IMAGES
 import LoveIcon from '../assets/cupid.svg';
@@ -30,6 +31,9 @@ class Form extends Component {
   
   componentDidMount() {
     console.log(this.state.wordList);
+    
+  Mousetrap.bind(['* k', 'ctrl+r', `up up down down left right left right b a enter`], this.getSwears);
+    
   }
   // function makes an api call for auto suggestions and returns a promise
   suggestionQuery = (input) => {
@@ -172,6 +176,16 @@ class Form extends Component {
         })
       })
       this.getVerbs('ml', this.state.queryInput, '300')
+    })
+  }
+
+  getSwears = () => {
+    //setState to an input and call setWordList()
+    console.log('fuck it worked!');
+    this.setState({
+      queryInput: 'fuck',
+    }, () => {
+      this.setWordList();
     })
   }
 
