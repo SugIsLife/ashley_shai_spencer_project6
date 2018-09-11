@@ -167,8 +167,7 @@ legend, button::-moz-focus-inner, input::-moz-focus-inner {
   float: left;
   margin: 1rem 0 0 2rem;
   width: calc(30% - 2rem);
-  height: 80vmax;
-  max-height: 80vh;
+  height: 95vmin;
   text-align: center;
   overflow-y: scroll; }
   .poem-dashboard .show {
@@ -198,13 +197,10 @@ button, a.home-link {
   position: relative;
   width: 100%; }
   .poem-page .fridge-container {
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 60vmax !important; }
+    margin: 0 auto;
+    display: block;
+    float: none;
+    width: 85%; }
 
 .inline-block {
   display: inline-block; }
@@ -388,6 +384,9 @@ label {
   padding: 0 15vmax;
   margin: 2.5rem 0 0; }
 
+.topic-container {
+  position: relative; }
+
 .search-words {
   width: calc(30% - 5px);
   float: left;
@@ -398,11 +397,12 @@ label {
 
 footer {
   height: 5vh;
-  background: #006750;
   padding: 10px;
-  text-align: right;
+  text-align: center;
   width: 100%;
-  color: #f1f1f1; }
+  color: #006750; }
+  footer a {
+    color: inherit; }
 
 /* Portrait tablet and small desktops */
 @media (max-width: 940px) {
@@ -413,7 +413,7 @@ footer {
   .fridge-container {
     padding: 4rem 6rem; }
   .poem-page .fridge-container {
-    width: 85% !important; } }
+    width: 80%; } }
 
 @media (max-width: 820px) {
   .main-section {
@@ -430,7 +430,7 @@ footer {
     transition: padding .2s; }
   .main-form fieldset label {
     width: 20%; }
-  .fridge-container {
+  .fridge .fridge-container {
     position: absolute;
     top: 40%;
     right: 0;
@@ -444,7 +444,7 @@ footer {
     width: 100%;
     margin: 0; }
   .poem-page .fridge-container {
-    width: 100% !important; } }
+    width: 90%; } }
 
 /* Landscape phones and down */
 @media (max-width: 480px) {

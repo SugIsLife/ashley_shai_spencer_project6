@@ -15,7 +15,7 @@
     }
     .poem-page{
         .fridge-container{
-            width: 85% !important;
+            width: 80%;
         }
     }
 }
@@ -45,7 +45,7 @@
             }
         }
     }
-    .fridge-container{
+    .fridge .fridge-container{
         @include position(absolute,40%,0,0,50%);
         transform: translateX(-50%);
         width: 85%;
@@ -58,7 +58,7 @@
     }
     .poem-page{
         .fridge-container{
-            width: 100% !important;
+            width: 90%;
         }
     }
 
