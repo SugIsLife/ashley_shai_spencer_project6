@@ -216,7 +216,7 @@ class Form extends Component {
         <form onSubmit={this.handleSubmit}>
           <div className="search-container">
             <div className="search-bar clearfix">
-                  <input id="queryInput" onChange={this.handleChange} type="text" name="" value={this.state.queryInput} placeHolder="Enter a poem topic" readOnly={this.state.topicSelected ? true : false}/>
+                  <input id="queryInput" onChange={this.handleChange} type="text" name="" value={this.state.queryInput} placeholder="Enter a poem topic" readOnly={this.state.topicSelected ? true : false}/>
                   <label className="visuallyhidden" htmlFor="queryInput">
                     <h3>Enter a poem topic to get words</h3>
                   </label>
@@ -270,6 +270,15 @@ class Form extends Component {
 
           </div>
         </form>
+        <footer>
+          Made by
+              <a href="http://www.ashleyhellyer.com"> Ashley </a>
+          &
+               <a href="http://www.shaikirmanicodes.com"> Shai </a>
+          &
+               <a href="http://www.spen.io"> Spencer </a>
+          2018 &copy;
+          </footer>
       </section>
     )
   }
