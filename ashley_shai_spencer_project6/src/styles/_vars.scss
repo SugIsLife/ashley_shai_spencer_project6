@@ -2,20 +2,13 @@
 $headerfont: 'Varela Round', sans-serif;
 $basefont: 'Cabin', sans-serif;
 
-
-
 // BRAND COLOURS 
 $green:#006750;
 $mint:#9BE0B6;
 $red:#FE0046;
 $light: #f1f1f1;
 
-
-
-
 // MIXINS
-
-
 @mixin position($type, $top, $right, $bottom, $left) { 
     position: $type; 
     top: $top; 
