@@ -1,12 +1,9 @@
 import React, { Component } from 'react';
-// import { Link } from 'react-router-dom';
 import '../App.css';
 import axios from 'axios';
 import _ from 'underscore';
 import Filter from 'bad-words';
 import swal from 'sweetalert';
-
-
 import Mousetrap from 'mousetrap';
 
 // IMAGES
@@ -17,15 +14,14 @@ import AstrologyIcon from '../assets/astrology.svg';
 import ShakespeareIcon from '../assets/shakespeare.svg';
 import OdeLogo from '../assets/odeLogo.svg';
 
+//empty wordlist that gets populated with words on submit of form
 let wordList = []
 
 class Form extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      // Contains the input value that will be used to make api call for suggestions
       queryInput: '',
-      // Prototyping our array of returned suggestions
       autoSuggest: [],
       wordList: [],
       topic: '',
@@ -33,16 +29,15 @@ class Form extends Component {
   }
   
   componentDidMount() {
-    console.log(this.state.wordList);
-    
+
   Mousetrap.bind(['* k', 'ctrl+r', `up up down down left right left right b a enter`], this.getSwears);
     
   }
+
   // function makes an api call for auto suggestions and returns a promise
   suggestionQuery = (input) => {
     return axios.get(`https://api.datamuse.com/sug?s=${input}`)
   }
-
 
   handleChange = (e) => {
     // To make this function generic, set the changed input's key to be its id and value to be its value.
@@ -66,7 +61,6 @@ class Form extends Component {
         }).catch(console.log),1000);
     } else {
       swal("You can't swear here", "naughty naughty!", "error");
-      // swal('You can\'t swear here', 'warning')
       this.setState({
         queryInput: '',
       })
@@ -143,7 +137,7 @@ class Form extends Component {
         this.props.passChildState('wordList', duplicateFree)
         this.props.history.push("/fridge")
       })
-      // return verbList.word
+      
 
     })
   }
@@ -186,7 +180,6 @@ class Form extends Component {
 
   getSwears = () => {
     //setState to an input and call setWordList()
-    console.log('fuck it worked!');
     this.setState({
       queryInput: 'fuck',
     }, () => {
@@ -197,7 +190,7 @@ class Form extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     if (!this.state.queryInput) {
-      return swal('To make a poem, you need to enter a word in, dummy!')
+      return swal('To make a poem, you need to enter a word in, silly!')
     } else {
       this.setWordList()
     }
