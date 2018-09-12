@@ -144,137 +144,6 @@ legend, button::-moz-focus-inner, input::-moz-focus-inner {
   box-sizing: border-box;
   font-family: "Cabin", sans-serif; }
 
-.wrapper {
-  max-width: 1080px;
-  width: 90%;
-  margin: 0 auto;
-  transition: width .2s; }
-
-.App {
-  height: 100vh;
-  max-height: 100vh;
-  background: #f1f1f1;
-  overflow-y: scroll; }
-
-.fridge {
-  max-height: 100vh; }
-
-.category-options {
-  display: block;
-  width: 100%; }
-
-.poem-dashboard {
-  float: left;
-  margin: 1rem 2rem 0 0;
-  width: calc(30% - 2rem);
-  height: 95vmin;
-  text-align: center;
-  overflow-y: scroll; }
-  .poem-dashboard .show {
-    background: #f1f1f1; }
-  .poem-dashboard ul {
-    width: 100%; }
-
-button, a.home-link {
-  position: relative;
-  font-family: "Cabin", sans-serif;
-  font-size: 1rem;
-  padding: .5rem;
-  margin: 0.5rem 0;
-  background: #9BE0B6;
-  border: none;
-  color: #006750;
-  z-index: 999;
-  box-shadow: 0px 0px 0 #006750;
-  transition: box-shadow .3s; }
-  button:hover, a.home-link:hover {
-    box-shadow: 5px 5px 0 #006750;
-    transition: box-shadow .1s ease-in-out; }
-  button:active, a.home-link:active {
-    box-shadow: 7px 7px 10px #006750; }
-
-.poem-page {
-  position: relative;
-  overflow: hidden; }
-  .poem-page .fridge-container {
-    margin: 0 auto;
-    display: block;
-    float: none;
-    width: 55%;
-    height: 76vh;
-    overflow: hidden; }
-
-.inline-block {
-  display: inline-block; }
-
-.row {
-  width: 100%;
-  display: block; }
-
-.fridge-header, .poem-header {
-  height: 15vh;
-  width: 100%; }
-
-.fridge-logo {
-  width: 70%;
-  float: left;
-  text-align: left;
-  margin-top: 0;
-  height: 50px; }
-
-.fridge-logo img, .poem-logo img {
-  height: 50px;
-  width: auto; }
-
-.fridge-nav {
-  width: 30%;
-  float: left; }
-
-.share-poem, a.home-link, .make-own {
-  display: block;
-  margin: 5px;
-  margin-top: 0;
-  width: calc(50% - 10px);
-  text-align: center;
-  text-decoration: none;
-  float: left;
-  padding: 15px 0;
-  height: 50px;
-  color: black; }
-
-.make-own {
-  width: 100%;
-  float: none; }
-
-.swal-text {
-  text-align: center; }
-
-.poem-logo {
-  width: 80%;
-  float: left;
-  text-align: left;
-  margin: 0;
-  height: 50px; }
-
-.poem-nav {
-  width: 20%;
-  float: left; }
-
-.main-section {
-  height: 95vh;
-  padding-top: 30px; }
-
-.fridge-container {
-  background: url(./assets/fridge.svg);
-  background-size: 100%;
-  background-repeat: no-repeat;
-  background-position: top;
-  padding: 4rem 6rem;
-  height: 100vh;
-  float: left;
-  width: 70%;
-  border-radius: 1rem; }
-
 h1 {
   font-family: "Varela Round", sans-serif;
   text-align: center; }
@@ -305,19 +174,143 @@ h1 {
     top: -2px;
     left: -2px; }
 
+button, a.home-link {
+  position: relative;
+  font-family: "Cabin", sans-serif;
+  font-size: 1rem;
+  padding: .5rem;
+  margin: 0.5rem 0;
+  background: #9BE0B6;
+  border: none;
+  color: #006750;
+  z-index: 999;
+  box-shadow: 0px 0px 0 #006750;
+  transition: box-shadow .3s; }
+  button:hover, a.home-link:hover {
+    box-shadow: 5px 5px 0 #006750;
+    transition: box-shadow .1s ease-in-out; }
+  button:active, a.home-link:active {
+    box-shadow: 7px 7px 10px #006750; }
+
 ul {
   list-style: none;
   padding: 0;
   height: 100%; }
-
-.swal-button {
-  background: #FE0046; }
 
 a {
   text-decoration: none;
   color: #f1f1f1; }
   a:hover {
     color: #FE0046; }
+
+.wrapper {
+  max-width: 1080px;
+  width: 90%;
+  margin: 0 auto;
+  transition: width .2s; }
+
+.swal-button {
+  background: #FE0046; }
+
+.App {
+  height: 100vh;
+  max-height: 100vh;
+  background: #f1f1f1;
+  overflow-y: scroll; }
+
+.row {
+  width: 100%;
+  display: block; }
+
+.fridge {
+  max-height: 100vh; }
+
+.fridge-header, .poem-header {
+  height: 15vh;
+  width: 100%; }
+
+.fridge-logo {
+  width: 70%;
+  float: left;
+  text-align: left;
+  margin-top: 0;
+  height: 50px; }
+
+.fridge-logo img, .poem-logo img {
+  height: 50px;
+  width: auto; }
+
+.share-poem, a.home-link, .make-own {
+  display: block;
+  margin: 5px;
+  margin-top: 0;
+  width: calc(50% - 10px);
+  text-align: center;
+  text-decoration: none;
+  float: left;
+  padding: 15px 0;
+  height: 50px;
+  color: black; }
+
+.fridge-nav {
+  width: 30%;
+  float: left; }
+
+.poem-dashboard {
+  float: left;
+  margin: 1rem 2rem 0 0;
+  width: calc(30% - 2rem);
+  height: 95vmin;
+  text-align: center;
+  overflow-y: scroll; }
+  .poem-dashboard .show {
+    background: #f1f1f1; }
+  .poem-dashboard ul {
+    width: 100%; }
+
+.poem-page {
+  position: relative;
+  overflow: hidden; }
+  .poem-page .fridge-container {
+    margin: 0 auto;
+    display: block;
+    float: none;
+    width: 55%;
+    height: 76vh;
+    overflow: hidden; }
+
+.poem-logo {
+  width: 80%;
+  float: left;
+  text-align: left;
+  margin: 0;
+  height: 50px; }
+
+.poem-nav {
+  width: 20%;
+  float: left; }
+
+.make-own {
+  width: 100%;
+  float: none; }
+
+.swal-text {
+  text-align: center; }
+
+.main-section {
+  height: 95vh;
+  padding-top: 30px; }
+
+.fridge-container {
+  background: url(./assets/fridge.svg);
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: top;
+  padding: 4rem 6rem;
+  height: 100vh;
+  float: left;
+  width: 70%;
+  border-radius: 1rem; }
 
 .main-form {
   text-align: center;
@@ -399,6 +392,10 @@ label {
   padding: 0.5rem;
   border: 3px solid transparent;
   margin-left: 5px; }
+
+.category-options {
+  display: block;
+  width: 100%; }
 
 footer {
   height: 5vh;
