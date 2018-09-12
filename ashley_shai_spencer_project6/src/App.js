@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import { BrowserRouter as Router, Route} from 'react-router-dom';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 // COMPONENTS
 import Form from './components/Form';
@@ -17,18 +17,9 @@ class App extends Component {
       selectedWords: [],
     }
   }
-  componentDidMount() {
-    // setWordList()
-    // console.log(this.state.wordList);
-    if (this.state.wordList.length > 0) {
-      // this.state.wordlist.map((word) => {
-      //   console.log(word)
-      // })
-    }
-  }
-
+  
+  //general function for passing info from child component to App
   passChildState = (key, val) => {
-    // console.log(key, val)
     this.setState({
       [key]: val,
     })

@@ -6,7 +6,7 @@ import swal from 'sweetalert';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import OdeLogo from '../assets/odeLogo.svg';
 
-
+//called when an item is moves position in the same list
 const reorder = (list, startIndex, endIndex) => {
   const result = Array.from(list);
   const [removed] = result.splice(startIndex, 1);
@@ -15,9 +15,7 @@ const reorder = (list, startIndex, endIndex) => {
   return result;
 };
 
-/**
- * Moves an item from one list to another list.
- */
+//moves an item from one list to another list
 const move = (source, destination, droppableSource, droppableDestination) => {
   const sourceClone = Array.from(source);
   const destClone = Array.from(destination);
@@ -32,11 +30,10 @@ const move = (source, destination, droppableSource, droppableDestination) => {
   return result;
 };
 
+//sets style of list item and drop area when dragging
 const getItemStyle = (isDragging, draggableStyle) => ({
-  // some basic styles to make the items look a bit nicer
   userSelect: 'none',
   color: isDragging ? '#00000aa' : 'black',
-  // change background colour if dragging
   background: isDragging ? '#f1f1f175' : '#f1f1f1',
   boxShadow: isDragging ? "2px 5px 5px #555" : "2px 5px",
   transition: "border .3s ease-in-out",
@@ -72,7 +69,6 @@ class Fridge extends Component{
 
   onDragEnd = result => {
     const { source, destination } = result;
-    console.log('dragEnd:', result)
 
     // dropped outside the list
     if (!destination) {
@@ -89,7 +85,7 @@ class Fridge extends Component{
       //update state with new array order
       let state = { selectedWords: items };
 
-      //if source is equal to droppable2 update selected items 
+      
       if (source.droppableId === 'droppable2') {
         state = { wordList: items };
       }
@@ -115,18 +111,16 @@ class Fridge extends Component{
 
   sharePoem = (e) => {
     //check to see if there are words in the poem 
-    console.log(this.state.selectedWords);
     if (this.state.selectedWords.length > 0) {
 
       this.setState({
         wordList: [],
 
       }, () => {
-        console.log('fridge state set')
+        //send words to firebase
         const dbRef = firebase.database().ref();
         this.props.passChildState("selectedWords", this.state.selectedWords)
         this.props.passChildState("wordList", [])
-        console.log(this.state.selectedWords);
 
         const poemKey = dbRef.push(this.state.selectedWords).key;
         //update URL path to go to poem component 
@@ -134,18 +128,12 @@ class Fridge extends Component{
         this.props.history.push(`/poem/${poemKey}`)
       })
 
-      // pass selected words to firebase
-
     } else {
       swal("hey you!", "why are you sharing an empty poem?!", "warning");
       
     }
 
   }
-  
-  // resetPage = () => {
-  //   window.location.reload();
-  // }
 
   render() {
     return (
