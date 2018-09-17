@@ -2,6 +2,7 @@
   "name": "ashley_shai_spencer_project6",
   "version": "0.1.0",
   "private": true,
+  "homepage": "http://spen.io/ode",
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.3.1",
     "axios": "^0.18.0",
